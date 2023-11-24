@@ -1,0 +1,10 @@
+# Xcode
+*.xcuserstate
+*.xcworkspace/
+*.xcproj/
+
+# macOS
+.DS_Store
+
+# Build products
+build/
