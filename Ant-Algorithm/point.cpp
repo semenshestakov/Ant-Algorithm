@@ -1,6 +1,5 @@
 #include "point.hpp"
 
-
 vector<shared_ptr<Point>> vecPoints;
 // Constructor Point(cord, cord)
 Point::Point(cord x, cord y){    
@@ -16,7 +15,9 @@ Point::Point(){
     throw PointConstructor();
 }
 
-Point::~Point(){}
+Point::~Point(){
+    cout << '~' << *this << endl;
+}
 
 // calc Distance this to Point
 dist Point::euclideanDistance(const Point p){
@@ -44,7 +45,6 @@ size_t Point::hash_point(){
     return hashA ^ ((hashB + 1) + 0x9e3779b9 + ((hashA + 1) << 6) + ((hashA + 5)>> 2));
 }
 
-
 // no-equel Identifier
 bool operator!=(const Point& p1,const Point& p2){
     return p1.getIdentifier() != p2.getIdentifier();
@@ -68,9 +68,7 @@ size_t Point::SharedPtrHash::operator()(const shared_ptr<Point>& ptr) const{
     return ptr->_identifier;
 }
 
-// for Hash
 bool Point::SharedPtrEqual::operator()(const shared_ptr<Point>& ptr1, const shared_ptr<Point>& ptr2) const{
     return ptr1->_identifier == ptr2->_identifier;
     
 }
-

@@ -1,22 +1,26 @@
 cmake_minimum_required(VERSION 3.12)
 
-# Явное указание пути к clang
-set(CMAKE_C_COMPILER /Library/Developer/CommandLineTools/usr/bin/clang)
-set(CMAKE_CXX_COMPILER /Library/Developer/CommandLineTools/usr/bin/clang++)
+project(YourProjectName)
 
-project(Ant-Algorithm)
-
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -O3")
+# Add your source files
+set(SOURCE_FILES
+    point.cpp
+    ClassAnt.cpp
+    draw.cpp
+    main.cpp
+)
 
-# Пути к заголовочным файлам SFML
+# Specify include directories
 include_directories(/opt/homebrew/Cellar/sfml/2.6.0/include/)
 
-add_executable(main main.cpp point.cpp ClassAnt.cpp draw.cpp)
+# Specify library directories
+link_directories(/opt/homebrew/Cellar/sfml/2.6.0/lib/)
 
-# Пути к библиотекам SFML
-target_link_libraries(main PRIVATE /opt/homebrew/Cellar/sfml/2.6.0/lib/libsfml-graphics.dylib
-                                     /opt/homebrew/Cellar/sfml/2.6.0/lib/libsfml-window.dylib
-                                     /opt/homebrew/Cellar/sfml/2.6.0/lib/libsfml-system.dylib)
+# Add executable
+add_executable(main ${SOURCE_FILES})
+
+# Link libraries
+target_link_libraries(main sfml-graphics sfml-window sfml-system)

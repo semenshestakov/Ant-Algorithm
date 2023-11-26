@@ -6,19 +6,7 @@ unique_ptr<DrawAnt> drawAntEx;
 DrawAnt::DrawAnt() : BaseAnt(){}
 DrawAnt::DrawAnt(shared_ptr<Point>& start, vector<shared_ptr<Point>>& vec) : BaseAnt(start, vec){
     fromPoint = start;
-    toPoint = start;    
-}
-
-// draw
-void DrawAnt::draw(sf::RenderWindow& window){
-    
-    while (!novisit->empty()) {
-        shared_ptr<Point> temp = popVertex();
-        drawLine(window, temp);
-    }
-    
-    drawLine(window, start);
-    novisit.swap(visit);
+    toPoint = start;
 }
 
 size_t maxP(){
@@ -35,13 +23,24 @@ size_t maxP(){
     return _max;
 }
 
+// draw
+void DrawAnt::draw(sf::RenderWindow& window){
+    
+    while (!novisit->empty()) {
+        shared_ptr<Point> temp = popVertex();
+        drawLine(window, temp);
+    }
+    
+    drawLine(window, start);
+    novisit.swap(visit);
+}
+
 // help function
 sf::ConvexShape& Line(sf::ConvexShape& convex, const sf::Vector2f v1, const sf::Vector2f v2){
     convex.setPointCount(3);
     convex.setPoint(0, v1);
     convex.setPoint(1, v2);
     convex.setPoint(2, v1);
-//    convex.setPoint(3, v2);
     
     return convex;
 }
@@ -64,15 +63,23 @@ void drawLines(sf::RenderWindow& window){
     }
 }
 
+// draw point on window
+void drawVecPoints(sf::RenderWindow& win){
+    for (auto& elm : vecPoints){win.draw(elm->getCircle());}
+}
+
+void DrawAnt::drawLine(sf::RenderWindow& window, shared_ptr<Point>& ptr){
+    nextVertex(ptr);
+    sf::ConvexShape convex;
+    ::Line(convex, toPoint->getVetrexDraw(), fromPoint->getVetrexDraw());
+    convex.setOutlineThickness(MAX_LINE);
+    convex.setOutlineColor(colorLineBest);
+    window.draw(convex);
+}
 
 void DrawAnt::nextVertex(shared_ptr<Point>& p){
     fromPoint = toPoint;
     toPoint = p;
-}
-
-// draw point on window
-void drawVecPoints(sf::RenderWindow& win){
-    for (auto& elm : vecPoints){win.draw(elm->getCircle());}
 }
 
 // drawPoint
@@ -107,11 +114,3 @@ shared_ptr<Point> DrawAnt::popVertex() {
     return temp;
 }
 
-void DrawAnt::drawLine(sf::RenderWindow& window, shared_ptr<Point>& ptr){
-    nextVertex(ptr);
-    sf::ConvexShape convex;
-    ::Line(convex, toPoint->getVetrexDraw(), fromPoint->getVetrexDraw());
-    convex.setOutlineThickness(MAX_LINE);
-    convex.setOutlineColor(colorLineBest);
-    window.draw(convex);
-}

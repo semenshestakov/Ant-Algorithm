@@ -9,13 +9,12 @@
 #include <stdio.h>
 #include <exception>
 #include <functional>
+    
 #define RADIUS 8
-
 
 using namespace std;
 typedef int cord;
 typedef unsigned int dist;
-typedef unsigned long long ull;
 
 class PointConstructor : public std::exception {};
 
@@ -55,8 +54,9 @@ public:
     };
 };
 
+typedef shared_ptr<Point> ptrPoint;
 bool operator!=(const Point&,const Point&);
 void drawVecPoints(sf::RenderWindow&);
-extern vector<shared_ptr<Point>> vecPoints;
+extern vector<ptrPoint> vecPoints;
 
 #endif /* point_hpp */

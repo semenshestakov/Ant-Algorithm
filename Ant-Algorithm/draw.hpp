@@ -1,10 +1,9 @@
 //  Created by Семён Шестаков on 17.11.2023.
-
 #ifndef draw_hpp
 #define draw_hpp
 
 #include "ClassAnt.hpp"
-#define MAX_LINE 5
+#define MAX_LINE 5.0
 
 extern bool fisrt_point;
 
@@ -17,7 +16,6 @@ size_t maxP();
 void drawLines(sf::RenderWindow&);
 void drawVecPoints(sf::RenderWindow&);
 
-
 class DrawAnt : public Ant {
 private:
     friend sf::ConvexShape& Line(sf::ConvexShape&, const sf::Vector2f, const sf::Vector2f);
@@ -28,7 +26,8 @@ public:
     void nextVertex(shared_ptr<Point>&) override;
     void draw(sf::RenderWindow&);
     void drawLine(sf::RenderWindow&, shared_ptr<Point>&);
+    void printDistance();
 };
-extern unique_ptr<DrawAnt> drawAntEx;
 
+extern unique_ptr<DrawAnt> drawAntEx;
 #endif /* draw_hpp */

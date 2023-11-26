@@ -1,35 +1,25 @@
 //  Created by Семён Шестаков on 12.11.2023.
-
-
 #include "ClassAnt.hpp"
 
+mapPoint fullDist;
+double minDist = 10e100;
 
-unordered_map<shared_ptr<Point>,
-        unordered_map<
-            shared_ptr<Point>, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>,
-        Point::SharedPtrHash, Point::SharedPtrEqual> fullDist;
+// Ant() - error
+Ant::Ant() : BaseAnt(){}
 
-// Constructor Ant(), BaseAnt() - error
-BaseAnt::BaseAnt(){throw AntConstructor();}
-Ant::Ant(){}
-
-// Constructor BaseAnt(shared_ptr<Point>&, vector<shared_ptr<Point>>&)
-BaseAnt::BaseAnt(shared_ptr<Point>& start, vector<shared_ptr<Point>>& vec){
-    if (vec.size() <= 2){ throw SizeError();}
-    this->start = start;
-    for (size_t i = 0; i < (vec.size());i++){
-        if (*vec[i] != *start){ novisit->insert(vec[i]);}
-    }
-}
-
-// Constructor Ant(hared_ptr<Point>&, vector<shared_ptr<Point>>&)
-Ant::Ant(shared_ptr<Point>& start, vector<shared_ptr<Point>>& vec) : BaseAnt(start, vec){
+// Constructor Ant(hared_ptr<Point>&, vector<ptrPoint>&)
+Ant::Ant(ptrPoint& start, vector<ptrPoint>& vec) : BaseAnt(start, vec){
     fromPoint = start;
     toPoint = start;
 }
 
+double Ant::funcP(const ptrPoint& elm){
+    double temp = pow(static_cast<double>(fullDist[toPoint][elm].P), alpha) * pow(DIST_CONST / fullDist[toPoint][elm].distanceToPoint, beta);
+    return temp;
+}
+
 // flip toPoint and fromPoint with new point (next)
-void Ant::nextVertex(shared_ptr<Point>& p){
+void Ant::nextVertex(ptrPoint& p){
     fromPoint = toPoint;
     toPoint = p;
     event = fullDist[fromPoint][toPoint].distanceToPoint;
@@ -38,13 +28,8 @@ void Ant::nextVertex(shared_ptr<Point>& p){
     history.push_back(p);
 }
 
-double Ant::funcP(const shared_ptr<Point>& elm){
-    double temp = pow(static_cast<double>(fullDist[toPoint][elm].P), alpha) * pow(fullDist[toPoint][elm].distanceToPoint, beta);
-    return temp;
-}
-
 // raise next Point and del elem in _novisit and add elem _visit
-shared_ptr<Point> Ant::popVertex(){
+ptrPoint Ant::popVertex(){
     size_t count = novisit->size(), i=0;
     vector<double> probability(count, 0);
     double _rand = static_cast<double>(rand()) / RAND_MAX;
@@ -63,7 +48,7 @@ shared_ptr<Point> Ant::popVertex(){
             auto it = novisit->find(elm);
             
             if (it != novisit->end()){
-                shared_ptr<Point> res = *it;
+                ptrPoint res = *it;
                 visit->insert(res);
                 novisit->erase(it);
                 return res;
@@ -73,11 +58,10 @@ shared_ptr<Point> Ant::popVertex(){
     }
     
     auto it = novisit->begin();
-    shared_ptr<Point> res = *it;
+    ptrPoint res = *it;
     visit->insert(res);
     novisit->erase(it);
     return res;
-//    return popVertex();
 }
 
 // iter
@@ -88,24 +72,25 @@ void Ant::next(){
     history.clear();
     
     while (!novisit->empty()) {
-        shared_ptr<Point> temp = popVertex();
+        ptrPoint temp = popVertex();
         nextVertex(temp);
     }
     
-//    shared_ptr<Point> temp = popVertex();
     nextVertex(start);
     novisit.swap(visit);
 }
 
-
 // calc euclideanDistance many points to many points
-void calcDist(const vector<shared_ptr<Point>>& vec){
+void calcDist(const vector<ptrPoint>& vec){
     for (size_t i = 0; i < (vec.size()); i++){
         for (size_t j = 0; j < (vec.size()); j++){
-            size_t n = 0;
-            if (*vec[i] != *vec[j]){n = 1;}
+            double t = 0.2;
+            if (i == j)
+                t = 0;
+
             struct PointToPoint temp {
-                .distanceToPoint = DIST_CONST / euclideanDistance(*vec[i], *vec[j]),
+                .distanceToPoint = euclideanDistance(*vec[i], *vec[j]),
+                .P = t
             };
             fullDist[vec[i]][vec[j]] = std::move(temp);
         }
@@ -113,39 +98,39 @@ void calcDist(const vector<shared_ptr<Point>>& vec){
 }
 
 // init vector Ant
-void initAntVec(vector<shared_ptr<Point>> vec){
+void initAntVec(vector<ptrPoint> vec){
     calcDist(vec);
     if (vec.size() < 2) throw SizeError();
-    
-    shared_ptr<Point> start = vec[0];
     
     for (auto& elm : vec){
         shared_ptr<Ant> temp = make_shared<Ant>(elm, vec);
         vecAnt.push_back(temp);
-
     }
 }
-
 
 // iteration on vector Ant
 void iteration(){
     for (auto& elm : vecAnt){elm->next();}
-//    double _sum = sum(vecPoints);
+    
     for (auto& elm1 : vecPoints){
         for (auto& elm2 : vecPoints){
             if (elm1 != elm2){
-                fullDist[elm1][elm2].P *= MEMORY;
+                fullDist[elm1][elm2].P *= cP;
             }
         }
     }
     
     for (auto& elm : vecAnt){
-        for (size_t i = 1;i < elm->history.size();i++){
-            auto& first = elm->history[i-1];
-            auto& last = elm->history[i];
-            
-            fullDist[first][last].P += Q / elm->distance;
+        if (elm->distance <= minDist && elm->distance != 0){
+            minDist = elm->distance;
+            for (size_t i = 1;i < elm->history.size();i++){
+                auto& first = elm->history[i-1];
+                auto& last = elm->history[i];
+                
+                double res = Q / (DIST_CONST / elm->distance);
+                fullDist[first][last].P += res;
+                fullDist[last][first].P += res;
+            }
         }
     }
 }
-

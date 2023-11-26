@@ -1,49 +1,28 @@
 //  Created by Семён Шестаков on 12.11.2023.
-
 #ifndef ClassAnt_hpp
 #define ClassAnt_hpp
 
-#include <unordered_set>
 #include <unordered_map>
-#include <vector>
-#include "point.hpp"
 #include <random>
-#include <memory>
+#include "BaseAnt.hpp"
 
-#define ANT_COUNT 100
-#define DIST_CONST 250.0
+#define DIST_CONST 100.0
 #define Q 10.0
-#define MEMORY 0.92
-#define alpha 0.5
-#define beta 5.0
-
-
-class AntConstructor : public exception{};
-class SizeError : public exception {};
-class NullPointer : public exception {};
+#define cP 0.72
+#define alpha 0.8 // 1.6 // P
+#define beta 1. // 0.85 // dist
 
 struct PointToPoint{
     double distanceToPoint = 0;
     double P = 0.2;
 };
 
-extern unordered_map<shared_ptr<Point>,
-        unordered_map<
-            shared_ptr<Point>, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>,
-        Point::SharedPtrHash, Point::SharedPtrEqual> fullDist;
+typedef unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
+typedef unordered_map<ptrPoint, unordered_map<ptrPoint, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>, Point::SharedPtrHash, Point::SharedPtrEqual> mapPoint;
 
+extern mapPoint fullDist;
+extern double minDist;
 
-class BaseAnt{
-
-protected:
-    shared_ptr<Point> start = NULL;
-    unique_ptr<unordered_set<shared_ptr<Point>, Point::SharedPtrHash, Point::SharedPtrEqual>> visit = make_unique<unordered_set<shared_ptr<Point>, Point::SharedPtrHash, Point::SharedPtrEqual>>();
-    unique_ptr<unordered_set<shared_ptr<Point>, Point::SharedPtrHash, Point::SharedPtrEqual>> novisit = make_unique<unordered_set<shared_ptr<Point>, Point::SharedPtrHash, Point::SharedPtrEqual>>();
-public:
-    BaseAnt();
-    BaseAnt(shared_ptr<Point>&, vector<shared_ptr<Point>>&);
-
-};
 
 class Ant : public virtual BaseAnt{
     
@@ -52,25 +31,24 @@ private:
     double event = 0;
     double pheromones = 0;
     void next();
-    double funcP(const shared_ptr<Point>&);
-    vector<shared_ptr<Point>> history;
+    double funcP(const ptrPoint&);
+    vector<ptrPoint> history;
     friend void iteration();
     
 protected:
-    shared_ptr<Point> fromPoint = NULL;
-    shared_ptr<Point> toPoint = NULL;
-    virtual void nextVertex(shared_ptr<Point>&);
-    virtual shared_ptr<Point> popVertex();
+    ptrPoint fromPoint = NULL;
+    ptrPoint toPoint = NULL;
+    virtual void nextVertex(ptrPoint&);
+    virtual ptrPoint popVertex();
 
 public:
     Ant();
-    Ant(shared_ptr<Point>&, vector<shared_ptr<Point>>&);
+    Ant(ptrPoint&, vector<ptrPoint>&);
 };
 
 static vector<shared_ptr<Ant>> vecAnt;
-void calcDist(const vector<shared_ptr<Point>>&);
-void initAntVec(vector<shared_ptr<Point>>);
-void sum(vector<shared_ptr<Point>>);
+void calcDist(const vector<ptrPoint>&);
+void initAntVec(vector<ptrPoint>);
 void iteration();
 
 #endif /* ClassAnt_hpp */

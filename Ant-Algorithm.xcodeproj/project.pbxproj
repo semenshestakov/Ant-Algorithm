@@ -11,6 +11,7 @@
 		A839C13B2B113EF400394E50 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1362B113EF400394E50 /* point.cpp */; };
 		A839C13C2B113EF400394E50 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1372B113EF400394E50 /* draw.cpp */; };
 		A839C13D2B113EF400394E50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1392B113EF400394E50 /* main.cpp */; };
+		A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A6B262B3761DF005DA214 /* BaseAnt.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		A839C1372B113EF400394E50 /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
 		A839C1382B113EF400394E50 /* ClassAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClassAnt.hpp; sourceTree = "<group>"; };
 		A839C1392B113EF400394E50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A87A6B262B3761DF005DA214 /* BaseAnt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnt.cpp; sourceTree = "<group>"; };
+		A87A6B272B3761DF005DA214 /* BaseAnt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAnt.hpp; sourceTree = "<group>"; };
 		A8FD3CF32B114873001AAE24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -75,6 +78,8 @@
 				A839C1372B113EF400394E50 /* draw.cpp */,
 				A839C1382B113EF400394E50 /* ClassAnt.hpp */,
 				A839C1392B113EF400394E50 /* main.cpp */,
+				A87A6B262B3761DF005DA214 /* BaseAnt.cpp */,
+				A87A6B272B3761DF005DA214 /* BaseAnt.hpp */,
 			);
 			path = "Ant-Algorithm";
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				A839C13A2B113EF400394E50 /* ClassAnt.cpp in Sources */,
 				A839C13D2B113EF400394E50 /* main.cpp in Sources */,
 				A839C13C2B113EF400394E50 /* draw.cpp in Sources */,
+				A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
