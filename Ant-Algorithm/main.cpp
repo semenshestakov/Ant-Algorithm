@@ -1,7 +1,7 @@
 #include <ctime>
 #include "draw.hpp"
 ///opt/homebrew/Cellar/sfml/2.6.0
-///clang++ -std=c++20 point.cpp ClassAnt.cpp draw.cpp main.cpp -I/opt/homebrew/Cellar/sfml/2.6.0/include/ -o main -L/opt/homebrew/Cellar/sfml/2.6.0/lib/ -lsfml-graphics -lsfml-window -lsfml-system
+///clang++ -std=c++20 point.cpp BaseAnt ClassAnt.cpp draw.cpp main.cpp -I/opt/homebrew/Cellar/sfml/2.6.0/include/ -o main -L/opt/homebrew/Cellar/sfml/2.6.0/lib/ -lsfml-graphics -lsfml-window -lsfml-system
 #define N 900
 #define M 600
 
@@ -91,13 +91,7 @@ int main() {
             iteration();
             cout << iter++ << endl;
             
-            for (auto& elm1 : vecPoints){
-                cout << *elm1 << endl;
-                for (auto& elm2 : vecPoints){
-                    cout << "\tto" << *elm2
-                    << ": P = " << fullDist[elm1][elm2].P << endl;
-                }
-            }
+            
             drawAntEx->draw(window);
         }
         drawVecPoints(window);

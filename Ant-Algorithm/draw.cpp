@@ -41,7 +41,7 @@ sf::ConvexShape& Line(sf::ConvexShape& convex, const sf::Vector2f v1, const sf::
     convex.setPoint(0, v1);
     convex.setPoint(1, v2);
     convex.setPoint(2, v1);
-    
+     
     return convex;
 }
 
@@ -55,7 +55,7 @@ void drawLines(sf::RenderWindow& window){
             sf::ConvexShape convex;
             Line(convex, elm1->getVetrexDraw(), elm2->getVetrexDraw());
             
-            float outlineThickness = (fullDist[elm1][elm2].P / _max + 0.15) * 10;
+            float outlineThickness = (fullDist[elm1][elm2].P / _max + 0.2) * 10;
             convex.setOutlineThickness(outlineThickness);
             convex.setOutlineColor(colorLine);
             window.draw(convex);

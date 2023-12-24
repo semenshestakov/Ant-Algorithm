@@ -8,9 +8,9 @@
 
 #define DIST_CONST 100.0
 #define Q 10.0
-#define cP 0.72
-#define alpha 0.8 // 1.6 // P
-#define beta 1. // 0.85 // dist
+#define cP 0.52
+#define alpha 0.5 // P
+#define beta 1. // dist
 
 struct PointToPoint{
     double distanceToPoint = 0;
