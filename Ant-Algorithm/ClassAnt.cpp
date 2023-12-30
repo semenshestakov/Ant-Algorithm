@@ -1,8 +1,7 @@
 //  Created by Семён Шестаков on 12.11.2023.
 #include "ClassAnt.hpp"
 
-mapPoint fullDist;
-double minDist = 10e100;
+mapPointPtr fullDist = make_shared<mapPoint>();
 
 // Ant() - error
 Ant::Ant() : BaseAnt(){}
@@ -13,18 +12,13 @@ Ant::Ant(ptrPoint& start, vector<ptrPoint>& vec) : BaseAnt(start, vec){
     toPoint = start;
 }
 
-double Ant::funcP(const ptrPoint& elm){
-    double temp = pow(static_cast<double>(fullDist[toPoint][elm].P), alpha) * pow(DIST_CONST / fullDist[toPoint][elm].distanceToPoint, beta);
-    return temp;
-}
-
 // flip toPoint and fromPoint with new point (next)
 void Ant::nextVertex(ptrPoint& p){
     fromPoint = toPoint;
     toPoint = p;
-    event = fullDist[fromPoint][toPoint].distanceToPoint;
+    event = (*fullDist)[fromPoint][toPoint].distanceToPoint;
     distance += event;
-    pheromones += fullDist[fromPoint][toPoint].P;
+    pheromones += (*fullDist)[fromPoint][toPoint].P;
     history.push_back(p);
 }
 
@@ -70,6 +64,7 @@ void Ant::next(){
     distance = 0;
     pheromones = 0;
     history.clear();
+    history.push_back(start);
     
     while (!novisit->empty()) {
         ptrPoint temp = popVertex();
@@ -80,57 +75,5 @@ void Ant::next(){
     novisit.swap(visit);
 }
 
-// calc euclideanDistance many points to many points
-void calcDist(const vector<ptrPoint>& vec){
-    for (size_t i = 0; i < (vec.size()); i++){
-        for (size_t j = 0; j < (vec.size()); j++){
-            double t = 0.2;
-            if (i == j)
-                t = 0;
-
-            struct PointToPoint temp {
-                .distanceToPoint = euclideanDistance(*vec[i], *vec[j]),
-                .P = t
-            };
-            fullDist[vec[i]][vec[j]] = std::move(temp);
-        }
-    }
-}
-
-// init vector Ant
-void initAntVec(vector<ptrPoint> vec){
-    calcDist(vec);
-    if (vec.size() < 2) throw SizeError();
-    
-    for (auto& elm : vec){
-        shared_ptr<Ant> temp = make_shared<Ant>(elm, vec);
-        vecAnt.push_back(temp);
-    }
-}
-
-// iteration on vector Ant
-void iteration(){
-    for (auto& elm : vecAnt){elm->next();}
-    
-    for (auto& elm1 : vecPoints){
-        for (auto& elm2 : vecPoints){
-            if (elm1 != elm2){
-                fullDist[elm1][elm2].P *= cP;
-            }
-        }
-    }
-    
-    for (auto& elm : vecAnt){
-        if (elm->distance <= minDist && elm->distance != 0){
-            minDist = elm->distance;
-            for (size_t i = 1;i < elm->history.size();i++){
-                auto& first = elm->history[i-1];
-                auto& last = elm->history[i];
-                
-                double res = Q / (DIST_CONST / elm->distance);
-                fullDist[first][last].P += res;
-                fullDist[last][first].P += res;
-            }
-        }
-    }
-}
+double Ant::getDist(){return distance;}
+vector<ptrPoint>& Ant::getHistory(){return history;}

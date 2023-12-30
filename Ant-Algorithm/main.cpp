@@ -1,5 +1,6 @@
 #include <ctime>
 #include "draw.hpp"
+#include "AntColony.hpp"
 ///opt/homebrew/Cellar/sfml/2.6.0
 ///clang++ -std=c++20 point.cpp BaseAnt ClassAnt.cpp draw.cpp main.cpp -I/opt/homebrew/Cellar/sfml/2.6.0/include/ -o main -L/opt/homebrew/Cellar/sfml/2.6.0/lib/ -lsfml-graphics -lsfml-window -lsfml-system
 #define N 900
@@ -31,6 +32,7 @@ void test(){
     vecPoints.push_back(make_shared<Point>(690, 550));
     
 }
+AntColony colony;
 
 int main() {
     srand(time_t(nullptr));
@@ -88,7 +90,7 @@ int main() {
         window.clear(sf::Color(221,221,221));
         drawLines(window);
         if (enter_click){
-            iteration();
+            colony.iteration();
             cout << iter++ << endl;
             
             
@@ -103,22 +105,20 @@ int main() {
 void startAlg(){
     cout << "\n===Start===\n" << endl;
     drawAntEx = make_unique<DrawAnt>(vecPoints[0], vecPoints);
-    initAntVec(vecPoints);
+    colony = AntColony(vecPoints);
 }
 
 void clearAlg(){
     cout << "\n====End====\n" << endl;
-    for (auto& elm1 : vecPoints){
-        cout << *elm1 << endl;
-        for (auto& elm2 : vecPoints){
-            cout << "\tto" << *elm2
-            << ": P = " << fullDist[elm1][elm2].P << endl;
-        }
-    }
+//    for (auto& elm1 : vecPoints){
+//        cout << *elm1 << endl;
+//        for (auto& elm2 : vecPoints){
+//            cout << "\tto" << *elm2
+//            << ": P = " << (*fullDist)[elm1][elm2].P << endl;
+//        }
+//    }
     vecPoints.clear();
-    fullDist.clear();
-    vecAnt.clear();
+    colony = AntColony();
     fisrt_point = true;
-    minDist = 10e100;
     iter = 0;
 }

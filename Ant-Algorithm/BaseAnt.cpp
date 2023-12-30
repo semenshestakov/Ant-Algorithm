@@ -10,4 +10,4 @@ BaseAnt::BaseAnt(ptrPoint& start, vector<ptrPoint>& vec){
 }
 
 // BaseAnt() - error
-BaseAnt::BaseAnt(){throw AntConstructor();}
+BaseAnt::BaseAnt(){ throw AntConstructor();}

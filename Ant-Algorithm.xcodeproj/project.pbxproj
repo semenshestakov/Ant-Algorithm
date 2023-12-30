@@ -11,6 +11,7 @@
 		A839C13B2B113EF400394E50 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1362B113EF400394E50 /* point.cpp */; };
 		A839C13C2B113EF400394E50 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1372B113EF400394E50 /* draw.cpp */; };
 		A839C13D2B113EF400394E50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1392B113EF400394E50 /* main.cpp */; };
+		A849FA242B40750600EE0CAC /* AntColony.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A849FA222B40750600EE0CAC /* AntColony.cpp */; };
 		A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A6B262B3761DF005DA214 /* BaseAnt.cpp */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		A839C1372B113EF400394E50 /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
 		A839C1382B113EF400394E50 /* ClassAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClassAnt.hpp; sourceTree = "<group>"; };
 		A839C1392B113EF400394E50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A849FA222B40750600EE0CAC /* AntColony.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AntColony.cpp; sourceTree = "<group>"; };
+		A849FA232B40750600EE0CAC /* AntColony.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AntColony.hpp; sourceTree = "<group>"; };
 		A87A6B262B3761DF005DA214 /* BaseAnt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnt.cpp; sourceTree = "<group>"; };
 		A87A6B272B3761DF005DA214 /* BaseAnt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAnt.hpp; sourceTree = "<group>"; };
 		A8FD3CF32B114873001AAE24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -80,6 +83,8 @@
 				A839C1392B113EF400394E50 /* main.cpp */,
 				A87A6B262B3761DF005DA214 /* BaseAnt.cpp */,
 				A87A6B272B3761DF005DA214 /* BaseAnt.hpp */,
+				A849FA222B40750600EE0CAC /* AntColony.cpp */,
+				A849FA232B40750600EE0CAC /* AntColony.hpp */,
 			);
 			path = "Ant-Algorithm";
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				A839C13D2B113EF400394E50 /* main.cpp in Sources */,
 				A839C13C2B113EF400394E50 /* draw.cpp in Sources */,
 				A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */,
+				A849FA242B40750600EE0CAC /* AntColony.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
