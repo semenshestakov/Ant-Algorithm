@@ -72,3 +72,5 @@ bool Point::SharedPtrEqual::operator()(const shared_ptr<Point>& ptr1, const shar
     return ptr1->_identifier == ptr2->_identifier;
     
 }
+cord Point::getX(){return _x;}
+cord Point::getY(){return _y;}

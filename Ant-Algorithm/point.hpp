@@ -31,6 +31,8 @@ public:
     Point();
     Point(cord, cord);
     ~Point();
+    cord getX();
+    cord getY();
     
     // operators
     bool operator==(const Point&) const;
@@ -58,5 +60,6 @@ typedef shared_ptr<Point> ptrPoint;
 bool operator!=(const Point&,const Point&);
 void drawVecPoints(sf::RenderWindow&);
 extern vector<ptrPoint> vecPoints;
+extern vector<ptrPoint> minVecPoints;
 
 #endif /* point_hpp */

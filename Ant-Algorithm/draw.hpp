@@ -10,10 +10,6 @@ const sf::Color colorLineBest = sf::Color(58, 202, 138);
 const sf::Color colorPoint = sf::Color(79,127,198);
 const sf::Color colorFirstPoint = sf::Color(235, 53, 89);
 
-double maxP();
-void drawLines(sf::RenderWindow&);
-void drawVecPoints(sf::RenderWindow&);
-
 class DrawAnt : public Ant {
 private:
     friend sf::ConvexShape& Line(sf::ConvexShape&, const sf::Vector2f, const sf::Vector2f);
@@ -27,6 +23,13 @@ public:
     void printDistance();
 };
 
+// func
+double maxP();
+void drawLines(sf::RenderWindow&);
+void drawVecPoints(sf::RenderWindow&);
+void drawMinWay(sf::RenderWindow&);
+
+// global var
 extern unique_ptr<DrawAnt> drawAntEx;
 extern bool fisrt_point;
 #endif /* draw_hpp */

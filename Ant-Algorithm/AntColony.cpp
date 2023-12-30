@@ -2,7 +2,10 @@
 
 #include "AntColony.hpp"
 
+vector<ptrPoint> minVecPoints;
+
 AntColony::AntColony(){}
+AntColony::~AntColony(){minVecPoints.clear();}
 AntColony::AntColony(vector<ptrPoint>& vec){
     if (vec.size() < 2) throw SizeError();
     fullDist = make_shared<mapPoint>();
@@ -50,11 +53,12 @@ void AntColony::iteration(){
     for (auto& elm : vecAnt){
         if (elm->getDist() <= minDist && elm->getDist() != 0){
             minDist = elm->getDist();
+            minVecPoints = elm->getHistory();
             for (size_t i = 1;i < elm->getHistory().size();i++){
                 auto& first = elm->getHistory()[i-1];
                 auto& last = elm->getHistory()[i];
                 
-                double res = Q / (DIST_CONST / elm->getDist());
+                double res = min (Q / (DIST_CONST / elm->getDist()), MAX_P);
                 (*fullDist)[first][last].P += res;
                 (*fullDist)[last][first].P += res;
             }
@@ -65,4 +69,10 @@ void AntColony::iteration(){
 double Ant::funcP(const ptrPoint& elm){
     double temp = pow(static_cast<double>((*fullDist)[toPoint][elm].P), alpha) * pow(DIST_CONST / (*fullDist)[toPoint][elm].distanceToPoint, beta);
     return temp;
+}
+
+double min(double& x, double& y){
+    if (x < y)
+        return x;
+    return y;
 }

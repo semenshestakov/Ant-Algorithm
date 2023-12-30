@@ -7,9 +7,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Add your source files
 set(SOURCE_FILES
-    point.cpp
-    ClassAnt.cpp
-    draw.cpp
+    point.cpp 
+    WriteFile.cpp
+    BaseAnt.cpp 
+    ClassAnt.cpp 
+    AntColony.cpp  
+    draw.cpp 
     main.cpp
 )
 
