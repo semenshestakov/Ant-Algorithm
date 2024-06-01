@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A839C13A2B113EF400394E50 /* ClassAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1332B113EF400394E50 /* ClassAnt.cpp */; };
-		A839C13B2B113EF400394E50 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1362B113EF400394E50 /* point.cpp */; };
-		A839C13C2B113EF400394E50 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1372B113EF400394E50 /* draw.cpp */; };
 		A839C13D2B113EF400394E50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1392B113EF400394E50 /* main.cpp */; };
-		A849FA242B40750600EE0CAC /* AntColony.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A849FA222B40750600EE0CAC /* AntColony.cpp */; };
-		A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A6B262B3761DF005DA214 /* BaseAnt.cpp */; };
-		A8EB0C0D2B41593A00253535 /* WriteFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EB0C0B2B41593A00253535 /* WriteFile.cpp */; };
+		A8D5220F2C0B778000611737 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D5220D2C0B778000611737 /* Window.cpp */; };
+		A8D5221D2C0B972C00611737 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D5221C2C0B972C00611737 /* point.cpp */; };
+		A8D5221F2C0B97B700611737 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D5221E2C0B97B700611737 /* draw.cpp */; };
+		A8D522272C0B97C600611737 /* ClassAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522222C0B97C600611737 /* ClassAnt.cpp */; };
+		A8D522282C0B97C600611737 /* AntColony.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522232C0B97C600611737 /* AntColony.cpp */; };
+		A8D522292C0B97C600611737 /* BaseAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522242C0B97C600611737 /* BaseAnt.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,19 +30,19 @@
 
 /* Begin PBXFileReference section */
 		A839C11E2B113E7D00394E50 /* Ant-Algorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ant-Algorithm"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A839C1332B113EF400394E50 /* ClassAnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassAnt.cpp; sourceTree = "<group>"; };
-		A839C1342B113EF400394E50 /* point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = point.hpp; sourceTree = "<group>"; };
-		A839C1352B113EF400394E50 /* draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = draw.hpp; sourceTree = "<group>"; };
-		A839C1362B113EF400394E50 /* point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
-		A839C1372B113EF400394E50 /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
-		A839C1382B113EF400394E50 /* ClassAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClassAnt.hpp; sourceTree = "<group>"; };
 		A839C1392B113EF400394E50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A849FA222B40750600EE0CAC /* AntColony.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AntColony.cpp; sourceTree = "<group>"; };
-		A849FA232B40750600EE0CAC /* AntColony.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AntColony.hpp; sourceTree = "<group>"; };
-		A87A6B262B3761DF005DA214 /* BaseAnt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnt.cpp; sourceTree = "<group>"; };
-		A87A6B272B3761DF005DA214 /* BaseAnt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAnt.hpp; sourceTree = "<group>"; };
-		A8EB0C0B2B41593A00253535 /* WriteFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WriteFile.cpp; sourceTree = "<group>"; };
-		A8EB0C0C2B41593A00253535 /* WriteFile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WriteFile.hpp; sourceTree = "<group>"; };
+		A8D5220D2C0B778000611737 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		A8D5220E2C0B778000611737 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
+		A8D522182C0B970900611737 /* draw.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = draw.hpp; sourceTree = "<group>"; };
+		A8D5221B2C0B972C00611737 /* point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = point.hpp; sourceTree = "<group>"; };
+		A8D5221C2C0B972C00611737 /* point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
+		A8D5221E2C0B97B700611737 /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
+		A8D522212C0B97C600611737 /* BaseAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseAnt.hpp; sourceTree = "<group>"; };
+		A8D522222C0B97C600611737 /* ClassAnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassAnt.cpp; sourceTree = "<group>"; };
+		A8D522232C0B97C600611737 /* AntColony.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AntColony.cpp; sourceTree = "<group>"; };
+		A8D522242C0B97C600611737 /* BaseAnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnt.cpp; sourceTree = "<group>"; };
+		A8D522252C0B97C600611737 /* ClassAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClassAnt.hpp; sourceTree = "<group>"; };
+		A8D522262C0B97C600611737 /* AntColony.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AntColony.hpp; sourceTree = "<group>"; };
 		A8FD3CF32B114873001AAE24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -76,22 +76,46 @@
 		A839C1322B113EF400394E50 /* Ant-Algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				A8D522092C0B772F00611737 /* Graphics */,
 				A8FD3CF32B114873001AAE24 /* README.md */,
-				A839C1332B113EF400394E50 /* ClassAnt.cpp */,
-				A839C1342B113EF400394E50 /* point.hpp */,
-				A839C1352B113EF400394E50 /* draw.hpp */,
-				A839C1362B113EF400394E50 /* point.cpp */,
-				A839C1372B113EF400394E50 /* draw.cpp */,
-				A839C1382B113EF400394E50 /* ClassAnt.hpp */,
 				A839C1392B113EF400394E50 /* main.cpp */,
-				A87A6B262B3761DF005DA214 /* BaseAnt.cpp */,
-				A87A6B272B3761DF005DA214 /* BaseAnt.hpp */,
-				A849FA222B40750600EE0CAC /* AntColony.cpp */,
-				A849FA232B40750600EE0CAC /* AntColony.hpp */,
-				A8EB0C0B2B41593A00253535 /* WriteFile.cpp */,
-				A8EB0C0C2B41593A00253535 /* WriteFile.hpp */,
+				A8D5221A2C0B972C00611737 /* Math */,
 			);
 			path = "Ant-Algorithm";
+			sourceTree = "<group>";
+		};
+		A8D522092C0B772F00611737 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				A8D522182C0B970900611737 /* draw.hpp */,
+				A8D5221E2C0B97B700611737 /* draw.cpp */,
+				A8D5220D2C0B778000611737 /* Window.cpp */,
+				A8D5220E2C0B778000611737 /* Window.hpp */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		A8D5221A2C0B972C00611737 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				A8D522202C0B97C600611737 /* AntMathColony */,
+				A8D5221B2C0B972C00611737 /* point.hpp */,
+				A8D5221C2C0B972C00611737 /* point.cpp */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		A8D522202C0B97C600611737 /* AntMathColony */ = {
+			isa = PBXGroup;
+			children = (
+				A8D522212C0B97C600611737 /* BaseAnt.hpp */,
+				A8D522222C0B97C600611737 /* ClassAnt.cpp */,
+				A8D522232C0B97C600611737 /* AntColony.cpp */,
+				A8D522242C0B97C600611737 /* BaseAnt.cpp */,
+				A8D522252C0B97C600611737 /* ClassAnt.hpp */,
+				A8D522262C0B97C600611737 /* AntColony.hpp */,
+			);
+			path = AntMathColony;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,13 +175,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A839C13B2B113EF400394E50 /* point.cpp in Sources */,
-				A839C13A2B113EF400394E50 /* ClassAnt.cpp in Sources */,
+				A8D5221D2C0B972C00611737 /* point.cpp in Sources */,
 				A839C13D2B113EF400394E50 /* main.cpp in Sources */,
-				A839C13C2B113EF400394E50 /* draw.cpp in Sources */,
-				A8EB0C0D2B41593A00253535 /* WriteFile.cpp in Sources */,
-				A87A6B282B3761DF005DA214 /* BaseAnt.cpp in Sources */,
-				A849FA242B40750600EE0CAC /* AntColony.cpp in Sources */,
+				A8D5220F2C0B778000611737 /* Window.cpp in Sources */,
+				A8D522272C0B97C600611737 /* ClassAnt.cpp in Sources */,
+				A8D522282C0B97C600611737 /* AntColony.cpp in Sources */,
+				A8D522292C0B97C600611737 /* BaseAnt.cpp in Sources */,
+				A8D5221F2C0B97B700611737 /* draw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

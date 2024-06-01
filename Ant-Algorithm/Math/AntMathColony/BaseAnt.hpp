@@ -5,19 +5,18 @@
 #include "point.hpp"
 #include <unordered_set>
 
-typedef unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
 
-class AntConstructor : public exception{};
 class SizeError : public exception {};
 class NullPointer : public exception {};
 
 class BaseAnt{
 protected:
+    class AntConstructor : public exception{};
     ptrPoint start = NULL;
     unique_ptr<unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual>> visit = make_unique<setPoint>();
     unique_ptr<unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual>> novisit = make_unique<setPoint>();
 public:
-    BaseAnt();
+    BaseAnt() { throw AntConstructor(); };
     BaseAnt(ptrPoint&, vector<ptrPoint>&);
 };
 
