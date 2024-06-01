@@ -10,17 +10,13 @@ Point::Point(cord x, cord y){
     cout << *this << endl;
 }
 
-// Constructor Point() - error
-Point::Point(){
-    throw PointConstructor();
-}
-
 Point::~Point(){
     cout << '~' << *this << endl;
 }
 
 // calc Distance this to Point
-dist Point::euclideanDistance( const Point p ){
+double Point::euclideanDistance( const Point& p )
+{
     return hypot(_x - p._x, _y - p._y);
 }
 

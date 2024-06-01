@@ -2,31 +2,6 @@
 #include "Window.hpp"
 
 
-
-AntColony colony;
-
-void startAlg(){
-    cout << "\n===Start===\n" << endl;
-    drawAntEx = make_unique<DrawAnt>(vecPoints[0], vecPoints);
-    colony = AntColony(vecPoints);
-}
-
-void clearAlg(){
-    cout << "\n====End====\n" << endl;
-    for (auto& elm1 : vecPoints){
-        cout << *elm1 << endl;
-        for (auto& elm2 : vecPoints){
-            cout << "\tto" << *elm2
-            << ": P = " << (*fullDist)[elm1][elm2].P << endl;
-        }
-    }
-    vecPoints.clear();
-    colony = AntColony();
-    fisrt_point = true;
-    iter = 0;
-}
-
-
 void Window::eventHandler()
 {
     // Mouse
@@ -44,11 +19,10 @@ void Window::eventHandler()
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Enter) {
                 enter_click = !enter_click;
-                if (enter_click){
-                    startAlg();
-                } else {
-                    clearAlg();
-                }
+                if (enter_click)
+                    __start();
+                else
+                    __clear();
             }
         }
         
@@ -61,10 +35,10 @@ void Window::eventHandler()
                     fisrt_point = false;
                 
                 vecPoints.push_back(temp);
-                cout << "N: " << vecPoints.size()
-                << "  X = " << X
-                << " Y = " << Y << endl;
-                cout << sizeof(temp) << " " << sizeof(*temp) << endl;
+//                cout << "N: " << vecPoints.size()
+//                << "  X = " << X
+//                << " Y = " << Y << endl;
+//                cout << sizeof(temp) << " " << sizeof(*temp) << endl;
             }
         }
         
@@ -78,27 +52,45 @@ void Window::eventHandler()
 }
 
 
-
 bool Window::isOpen() { return window.isOpen(); }
 
 
-void Window::next()
+void Window::update()
 {
-
     eventHandler();
-
-    
-    window.clear(sf::Color(221,221,221));
+    window.clear(windowBackground);
     drawLines(window);
-    if (enter_click){
-        colony.iteration();
-        cout << iter++ << endl;
+    
+    if (enter_click)
+    {
+        algSystem->iteration();
+//        cout << iter++ << endl;
 //                    usleep(100000); // 0.1
 //                    usleep(1000000); // 1
         
-//            drawAntEx->draw(window);
+        algSystem->draw(window);
     }
-    drawMinWay(window);
+    
     drawVecPoints(window);
     window.display();
+}
+
+
+void Window::__clear()
+{
+    // Global
+    vecPoints.clear();
+    fisrt_point = true;
+    iter = 0;
+    
+    // Instance
+    algSystem = nullptr;
+}
+
+
+void Window::__start()
+{    
+    algSystem = make_unique<AlgorithmSystem>();
+    algSystem->add(new AntColony(vecPoints));
+    algSystem->add(new BrutForce(vecPoints));
 }

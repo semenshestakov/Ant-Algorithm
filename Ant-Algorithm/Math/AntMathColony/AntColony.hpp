@@ -5,6 +5,7 @@
 #define AntColony_hpp
 
 #include "ClassAnt.hpp"
+#include "../BaseAlgorithm.hpp"
 
 #define DIST_CONST 200.0
 #define Q 10.0
@@ -12,24 +13,26 @@
 #define MAX_P 0.5
 #define alpha 0.5 // P
 #define beta 1. // dist
-
 #define STOP_ITER 100 // dist
 
 
-class AntColony{
+class AntColony : public BaseAlgorithm
+{
 private:
     vector<shared_ptr<Ant>> vecAnt;
-    double minDist = 10e100;
     size_t iter = 0;
     
 public:
     AntColony();
     AntColony(vector<ptrPoint>&);
-    ~AntColony();
     void calcDist(vector<ptrPoint>&);
     void initAntVec(vector<ptrPoint>&);
-    void iteration();
+    void iteration() override;
+    void draw(sf::RenderWindow&) override;
 };
 
+
+
 double min(double&, double&);
+
 #endif /* AntColony_hpp */
