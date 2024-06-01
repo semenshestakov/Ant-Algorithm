@@ -6,12 +6,12 @@
 
 #include "ClassAnt.hpp"
 
-#define DIST_CONST 10.0
+#define DIST_CONST 200.0
 #define Q 10.0
-#define cP 0.3
+#define cP 0.7
 #define MAX_P 0.5
-#define alpha 0.1 // P
-#define beta 1.0 // dist
+#define alpha 0.5 // P
+#define beta 1. // dist
 
 #define STOP_ITER 100 // dist
 

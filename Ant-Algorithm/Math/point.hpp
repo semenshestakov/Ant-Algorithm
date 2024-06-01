@@ -8,6 +8,8 @@
 #include <iostream>
 #include <stdio.h>
 #include <exception>
+#include <unordered_map>
+#include <unordered_set>
 #include <functional>
     
 #define RADIUS 8
@@ -56,7 +58,16 @@ public:
     };
 };
 
+struct PointToPoint{
+    double distanceToPoint = 0;
+    double P = 0.2;
+};
+
 typedef shared_ptr<Point> ptrPoint;
+typedef unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
+typedef unordered_map<ptrPoint, unordered_map<ptrPoint, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>, Point::SharedPtrHash, Point::SharedPtrEqual> mapPoint;
+typedef shared_ptr<mapPoint> mapPointPtr;
+
 bool operator!=(const Point&,const Point&);
 void drawVecPoints(sf::RenderWindow&);
 extern vector<ptrPoint> vecPoints;

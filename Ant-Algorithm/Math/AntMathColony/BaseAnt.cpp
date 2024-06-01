@@ -9,5 +9,3 @@ BaseAnt::BaseAnt(ptrPoint& start, vector<ptrPoint>& vec){
     }
 }
 
-// BaseAnt() - error
-BaseAnt::BaseAnt(){ throw AntConstructor();}
