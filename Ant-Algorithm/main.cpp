@@ -26,14 +26,13 @@ void test(){
     vecPoints.push_back(make_shared<Point>(430, 487));
     vecPoints.push_back(make_shared<Point>(690, 550));
 }
-
+Window window = {900, 600, "AntAlg"};
 
 int main() {
     srand(time_t(nullptr));
-    Window window = {900, 600, "AntAlg"};
     while (window.isOpen())
     {
-        window.next();
+        window.update();
     }
     
 }

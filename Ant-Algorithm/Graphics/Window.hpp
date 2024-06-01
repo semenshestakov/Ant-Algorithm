@@ -2,36 +2,37 @@
 #ifndef Window_hpp
 #define Window_hpp
 
-#include <SFML/Graphics.hpp>
-#include <string>
-#include "../Math/point.hpp"
-#include "draw.hpp"
+
+#include "Drawer/draw.hpp"
 #include "AntColony.hpp"
+#include "BrutForce.hpp"
+#include "AlgorithmSystem.hpp"
 
 
+typedef unique_ptr<AlgorithmSystem> AlgorithmSystemPtr;
 using std::string;
-
 
 static bool lock_click = false;
 static bool enter_click = false;
 static size_t iter = 0;
-extern AntColony colony;
+
 
 class Window
 {
 private:
     sf::RenderWindow window;
+    AlgorithmSystemPtr algSystem = nullptr;
     void eventHandler();
+    void __clear();
+    void __start();
     
 public:
     Window() = delete;
-    Window(unsigned int _x, unsigned int _y, string _name) : window(sf::VideoMode(_x, _y), _name) {}
+    Window(unsigned int _x, unsigned int _y, string _name) : window(sf::VideoMode(_x, _y), _name) { algSystem = make_unique<AlgorithmSystem>(); }
     
     bool isOpen();
-    void next();
+    void update();
 };
 
-void clearAlg();
-void startAlg();
 
 #endif /* Window_hpp */

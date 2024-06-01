@@ -2,20 +2,26 @@
 #ifndef BrutForce_hpp
 #define BrutForce_hpp
 
-#include "point.hpp"
+#include "Utils.hpp"
+#include "BaseAlgorithm.hpp"
 
-class BrutForce
+#define MAX_LEN_ROUTE 10
+
+
+class BrutForce : public BaseAlgorithm
 {
 private:
-    class BrutForceConstructor : public exception {};
-    double _lengthRoute = 0;
-    uint _len = 0;
-    vector<ptrPoint> _bestRoute;
+    double __lengthRoute = 10e100;
+    vector<ptrPoint> __vectorPoints;
+    vector<ptrPoint> __bestRoute;
+    void __recursion(vector<ptrPoint>&, double);
+    bool __isFinded = false;
     
 public:
-    BrutForce() { throw BrutForceConstructor(); };
-    BrutForce( vector<ptrPoint>& );
-    void iter();
+    BrutForce() = delete;
+    BrutForce(vector<ptrPoint>&);
+    void iteration() override ;
+    void draw(sf::RenderWindow&) override;
 };
 
 
