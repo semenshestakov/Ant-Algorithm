@@ -6,32 +6,33 @@
 #include "BaseAnt.hpp"
 
 
-//typedef unordered_set<ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
-//typedef unordered_map<ptrPoint, unordered_map<ptrPoint, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>, Point::SharedPtrHash, Point::SharedPtrEqual> mapPoint;
+//typedef unordered_set<obj::ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
+//typedef unordered_map<obj::ptrPoint, unordered_map<obj::ptrPoint, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>, Point::SharedPtrHash, Point::SharedPtrEqual> mapPoint;
 //typedef shared_ptr<mapPoint> mapPointPtr;
 
-extern mapPointPtr fullDist;
+extern math::mapPointPtr fullDist;
 
-class Ant : public virtual BaseAnt{
+class Ant : public virtual BaseAnt
+{
 private:
     double distance = 0;
     double event = 0;
     double pheromones = 0;
-    double funcP(const ptrPoint&);
-    vector<ptrPoint> history;
+    double funcP( const obj::ptrPoint& );
+    std::vector< obj::ptrPoint > history;
     
 protected:
-    ptrPoint fromPoint = NULL;
-    ptrPoint toPoint = NULL;
-    virtual void nextVertex(ptrPoint&);
-    virtual ptrPoint popVertex();
+    obj::ptrPoint fromPoint = NULL;
+    obj::ptrPoint toPoint = NULL;
+    virtual void nextVertex( obj::ptrPoint& );
+    virtual obj::ptrPoint popVertex();
 
 public:
     Ant();
-    Ant(ptrPoint&, vector<ptrPoint>&);
+    Ant( obj::ptrPoint&, std::vector< obj::ptrPoint >& );
     void next();
     double getDist();
-    vector<ptrPoint>& getHistory();
+    std::vector< obj::ptrPoint >& getHistory();
 };
 
 #endif /* ClassAnt_hpp */

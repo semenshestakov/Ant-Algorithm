@@ -3,19 +3,21 @@
 #define BaseAlgorithm_hpp
 
 #include <SFML/Graphics.hpp>
-#include "point.hpp"
+#include "PointObject.hpp"
 
 
 class BaseAlgorithm 
 {
 public:
     virtual void iteration() = 0;
-    virtual void draw(sf::RenderWindow& window) = 0;
+    virtual void draw( sf::RenderWindow& window ) const = 0;
+    
 protected:
-    vector<ptrPoint> __bestRoute;
-    double __lengthRoute = 10e100;
+    std::vector< obj::ptrPoint > m_bestRoute;
+    double m_lengthRoute = 10e100;
+    
 public:
-    virtual ~BaseAlgorithm() { __bestRoute.clear(); }
+    virtual ~BaseAlgorithm() { m_bestRoute.clear(); }
 };
 
 #endif /* BaseAlgorithm_hpp */

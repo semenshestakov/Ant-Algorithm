@@ -8,23 +8,25 @@
 
 
 void test(){
-    vecPoints.push_back(make_shared<Point>(179, 216));
-    vecPoints.push_back(make_shared<Point>(381, 72));
-    vecPoints.push_back(make_shared<Point>(377, 303));
-    vecPoints.push_back(make_shared<Point>(630, 173));
-    vecPoints.push_back(make_shared<Point>(503, 346));
-    vecPoints.push_back(make_shared<Point>(700, 227));
-    vecPoints.push_back(make_shared<Point>(585, 59));
-    vecPoints.push_back(make_shared<Point>(413, 213));
-    vecPoints.push_back(make_shared<Point>(184, 416));
-    vecPoints.push_back(make_shared<Point>(696, 404));
-    vecPoints.push_back(make_shared<Point>(739, 250));
-    vecPoints.push_back(make_shared<Point>(781, 71));
-    vecPoints.push_back(make_shared<Point>(168, 84));
-    vecPoints.push_back(make_shared<Point>(98, 269));
-    vecPoints.push_back(make_shared<Point>(99, 476));
-    vecPoints.push_back(make_shared<Point>(430, 487));
-    vecPoints.push_back(make_shared<Point>(690, 550));
+    /*
+    obj::vecPoints.push_back(make_shared<Point>(179, 216));
+    obj::vecPoints.push_back(make_shared<Point>(381, 72));
+    obj::vecPoints.push_back(make_shared<Point>(377, 303));
+    obj::vecPoints.push_back(make_shared<Point>(630, 173));
+    obj::vecPoints.push_back(make_shared<Point>(503, 346));
+    obj::vecPoints.push_back(make_shared<Point>(700, 227));
+    obj::vecPoints.push_back(make_shared<Point>(585, 59));
+    obj::vecPoints.push_back(make_shared<Point>(413, 213));
+    obj::vecPoints.push_back(make_shared<Point>(184, 416));
+    obj::vecPoints.push_back(make_shared<Point>(696, 404));
+    obj::vecPoints.push_back(make_shared<Point>(739, 250));
+    obj::vecPoints.push_back(make_shared<Point>(781, 71));
+    obj::vecPoints.push_back(make_shared<Point>(168, 84));
+    obj::vecPoints.push_back(make_shared<Point>(98, 269));
+    obj::vecPoints.push_back(make_shared<Point>(99, 476));
+    obj::vecPoints.push_back(make_shared<Point>(430, 487));
+    obj::vecPoints.push_back(make_shared<Point>(690, 550));
+     */
 }
 Window window = {900, 600, "AntAlg"};
 

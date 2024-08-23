@@ -9,7 +9,8 @@
 #include "AlgorithmSystem.hpp"
 
 
-typedef unique_ptr<AlgorithmSystem> AlgorithmSystemPtr;
+typedef unique_ptr< AlgorithmSystem>  AlgorithmSystemPtr;
+typedef unsigned int uint;
 using std::string;
 
 static bool lock_click = false;
@@ -23,12 +24,12 @@ private:
     sf::RenderWindow window;
     AlgorithmSystemPtr algSystem = nullptr;
     void eventHandler();
-    void __clear();
-    void __start();
+    void _clear();
+    void _start();
     
 public:
     Window() = delete;
-    Window(unsigned int _x, unsigned int _y, string _name) : window(sf::VideoMode(_x, _y), _name) { algSystem = make_unique<AlgorithmSystem>(); }
+    Window(uint , uint , string);
     
     bool isOpen();
     void update();
