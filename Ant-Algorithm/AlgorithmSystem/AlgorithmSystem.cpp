@@ -3,16 +3,16 @@
 
 AlgorithmSystem::~AlgorithmSystem() 
 {
-    for (auto alg : vectorAlgs)
+    for ( auto alg : vectorAlgs )
     {
         delete alg;
     }
     vectorAlgs.clear();
 }
 
-void AlgorithmSystem::add(BaseAlgorithm* alg)
+void AlgorithmSystem::add( BaseAlgorithm* alg )
 {
-    vectorAlgs.push_back(alg);
+    vectorAlgs.push_back( alg );
 }
 
 

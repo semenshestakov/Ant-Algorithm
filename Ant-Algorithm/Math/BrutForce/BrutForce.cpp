@@ -1,62 +1,63 @@
 //  Created by Семён Шестаков on 19.05.2024.
 #include "BrutForce.hpp"
 
+using std::cout, std::endl;
 
-BrutForce::BrutForce(vector<ptrPoint>& points)
+BrutForce::BrutForce(std::vector< obj::ptrPoint >& points)
 {
     for (auto& point : points)
     {
-        __vectorPoints.push_back(point);
+        m_vectorPoints.push_back(point);
     }
 }
 
 
 void BrutForce::iteration()
 {
-    if (__isFinded || __vectorPoints.size() > MAX_LEN_ROUTE)
+    if (m_isFinded || m_vectorPoints.size() > m_maxLenRoute)
         return;
     
-    for (size_t i = 0; i < __vectorPoints.size(); i++)
+    for (size_t i = 0; i < m_vectorPoints.size(); i++)
     {
-        vector<ptrPoint> tempPoints = {__vectorPoints[i]};
-        __recursion(tempPoints, 0.0);
+        std::vector< obj::ptrPoint > tempPoints = {m_vectorPoints[i]};
+        _recursion(tempPoints, 0.0);
         
     }
-    __isFinded = true;
+    m_isFinded = true;
 }
 
 
-void BrutForce::__recursion(vector<ptrPoint>& points, double length)
+void BrutForce::_recursion(std::vector< obj::ptrPoint >& points, double length)
 {
     cout << length << endl;
-    if (points.size() > __vectorPoints.size())
-        throw "points.size() > __vectorPoints.size()";
+    if (points.size() > m_vectorPoints.size())
+        throw "points.size() > m_vectorPoints.size()";
         
-    if (length > __lengthRoute)
+    if (length > m_lengthRoute)
         return;
     
-    if (points.size() == __vectorPoints.size())
+    if (points.size() == m_vectorPoints.size())
     {
-        length += points[0]->euclideanDistance(*(points[points.size() - 1]));
+        length += points[0]->distance(*(points[points.size() - 1]));
         points.push_back(points[0]);
-        if (length < __lengthRoute)
+        if (length < m_lengthRoute)
         {
-            __lengthRoute = length;
-            __bestRoute = points;
+            m_lengthRoute = length;
+            m_bestRoute = points;
         }
         return;
     }
     
-    for (auto& pointMain : __vectorPoints)
+    for (auto& pointMain : m_vectorPoints)
     {
         if (elemInVector(pointMain, points))
             continue;
         
-        vector<ptrPoint> pointsTemp = points;
-        double tempLength = pointsTemp[pointsTemp.size() - 1]->euclideanDistance(*pointMain) + length;
+        std::vector< obj::ptrPoint > pointsTemp = points;
+        double tempLength = pointsTemp[pointsTemp.size() - 1]->distance(*pointMain) + length;
         
         pointsTemp.push_back(pointMain);
         
-        __recursion(pointsTemp, tempLength);
+        _recursion(pointsTemp, tempLength);
     }
 }

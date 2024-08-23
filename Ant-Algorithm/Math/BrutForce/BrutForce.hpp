@@ -5,23 +5,23 @@
 #include "Utils.hpp"
 #include "BaseAlgorithm.hpp"
 
-#define MAX_LEN_ROUTE 10
-
 
 class BrutForce : public BaseAlgorithm
 {
-private:
-    double __lengthRoute = 10e100;
-    vector<ptrPoint> __vectorPoints;
-    vector<ptrPoint> __bestRoute;
-    void __recursion(vector<ptrPoint>&, double);
-    bool __isFinded = false;
-    
 public:
     BrutForce() = delete;
-    BrutForce(vector<ptrPoint>&);
+    BrutForce( std::vector< obj::ptrPoint >& );
     void iteration() override ;
-    void draw(sf::RenderWindow&) override;
+    void draw( sf::RenderWindow& ) const override;
+    
+private:
+    const std::size_t m_maxLenRoute = 10;
+    double m_lengthRoute = 10e100;
+    std::vector< obj::ptrPoint > m_vectorPoints;
+    std::vector< obj::ptrPoint > m_bestRoute;
+    void _recursion( std::vector< obj::ptrPoint >&, double );
+    bool m_isFinded = false;
+
 };
 
 

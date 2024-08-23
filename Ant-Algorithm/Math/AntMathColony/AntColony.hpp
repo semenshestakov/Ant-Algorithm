@@ -19,20 +19,18 @@
 class AntColony : public BaseAlgorithm
 {
 private:
-    vector<shared_ptr<Ant>> vecAnt;
-    size_t iter = 0;
+    std::vector< std::shared_ptr< Ant > > vecAnt;
+    std::size_t iter = 0;
     
 public:
     AntColony();
-    AntColony(vector<ptrPoint>&);
-    void calcDist(vector<ptrPoint>&);
-    void initAntVec(vector<ptrPoint>&);
+    AntColony( std::vector< obj::ptrPoint >& );
+    void calcDist( std::vector< obj::ptrPoint >& );
+    void initAntVec( std::vector< obj::ptrPoint >& );
     void iteration() override;
-    void draw(sf::RenderWindow&) override;
+    void draw( sf::RenderWindow& ) const override;
 };
 
 
-
-double min(double&, double&);
 
 #endif /* AntColony_hpp */

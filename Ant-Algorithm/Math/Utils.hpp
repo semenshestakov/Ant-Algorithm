@@ -8,10 +8,10 @@
 #ifndef Utils_hpp
 #define Utils_hpp
 
-#include "point.hpp"
+#include "HashablePoint.hpp"
 
-template <typename T>
-bool elemInVector(const T& elem, const vector<T> vec)
+template < typename T >
+bool elemInVector(const T& elem, const std::vector< T > vec)
 {
     for (auto& elemInVecor : vec)
     {

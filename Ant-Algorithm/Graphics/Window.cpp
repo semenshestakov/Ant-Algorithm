@@ -2,40 +2,49 @@
 #include "Window.hpp"
 
 
+Window::Window( uint _x, uint _y, string _name ) : window( sf::VideoMode(_x, _y), _name )
+{
+    algSystem = make_unique< AlgorithmSystem >();
+}
+
+
 void Window::eventHandler()
 {
     // Mouse
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    cord X = mousePosition.x, Y = mousePosition.y;
+    math::cord X = mousePosition.x, Y = mousePosition.y;
         
     // Events
     sf::Event event;
-    while (window.pollEvent(event)) {
+    while ( window.pollEvent( event ) )
+    {
         
         // Close window
-        if (event.type == sf::Event::Closed)
+        if ( event.type == sf::Event::Closed )
             window.close();
         
-        if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Enter) {
+        if ( event.type == sf::Event::KeyPressed )
+        {
+            if ( event.key.code == sf::Keyboard::Enter )
+            {
                 enter_click = !enter_click;
-                if (enter_click)
-                    __start();
+                if ( enter_click )
+                    _start();
                 else
-                    __clear();
+                    _clear();
             }
         }
         
         // Press button mouse left
-        if (event.type == sf::Event::MouseButtonPressed){
-            if (event.mouseButton.button == sf::Mouse::Left && lock_click != true){
-                ptrPoint temp = make_shared<Point>(X, Y);
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            if (event.mouseButton.button == sf::Mouse::Left && lock_click != true)
+            {
+                std::cout << X << " " << Y << std::endl;
+                obj::ptrPoint temp (new obj::Point( X, Y ));
                 
-                if (fisrt_point)
-                    fisrt_point = false;
-                
-                vecPoints.push_back(temp);
-//                cout << "N: " << vecPoints.size()
+                obj::vecPoints.push_back( temp );
+//                cout << "N: " << obj::vecPoints.size()
 //                << "  X = " << X
 //                << " Y = " << Y << endl;
 //                cout << sizeof(temp) << " " << sizeof(*temp) << endl;
@@ -58,8 +67,8 @@ bool Window::isOpen() { return window.isOpen(); }
 void Window::update()
 {
     eventHandler();
-    window.clear(windowBackground);
-    drawLines(window);
+    window.clear( draw::windowBackground );
+    drawLines( window );
     
     if (enter_click)
     {
@@ -76,11 +85,10 @@ void Window::update()
 }
 
 
-void Window::__clear()
+void Window::_clear()
 {
     // Global
-    vecPoints.clear();
-    fisrt_point = true;
+    obj::vecPoints.clear();
     iter = 0;
     
     // Instance
@@ -88,9 +96,9 @@ void Window::__clear()
 }
 
 
-void Window::__start()
+void Window::_start()
 {    
-    algSystem = make_unique<AlgorithmSystem>();
-    algSystem->add(new AntColony(vecPoints));
-    algSystem->add(new BrutForce(vecPoints));
+    algSystem = make_unique< AlgorithmSystem >();
+    algSystem->add( new AntColony( obj::vecPoints ) );
+    //algSystem->add( new BrutForce( obj::vecPoints ) );
 }
