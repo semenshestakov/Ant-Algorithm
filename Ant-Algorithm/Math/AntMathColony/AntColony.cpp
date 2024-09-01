@@ -2,22 +2,29 @@
 #include "AntColony.hpp"
 
 
+namespace math::alg::colony
+{
 
-
-AntColony::AntColony() {}
-
-
+// = = = = = = = = = = = = = = = = = = = =
+//      Constructors and Distructors
+// = = = = = = = = = = = = = = = = = = = =
 AntColony::AntColony( std::vector< obj::ptrPoint >& vec )
 {
-    if (vec.size() < 2) throw SizeError();
+    if ( vec.size() < 2 )
+        throw "[ERROR] vec.size() <= 2\n";
     
-    fullDist = std::make_shared< math::mapPoint >();
+    obj::fullDist = std::make_shared< math::mapPoint >();
     initAntVec( vec );
     calcDist( vec );
 }
 
+// = = = = = = = = = = = = = = = = = = = =
+//           Math && Base Logic
+// = = = = = = = = = = = = = = = = = = = =
 
-// calc euclideanDistance many points to many points
+/* 
+ calc euclideanDistance many points to many points
+ */
 void AntColony::calcDist( std::vector< obj::ptrPoint >& vec )
 {
     for ( size_t i = 0; i < vec.size(); i++ )
@@ -35,13 +42,12 @@ void AntColony::calcDist( std::vector< obj::ptrPoint >& vec )
                 .distanceToPoint = vec[i]->distance( *vec[j] ),
                 .P = t
             };
-            (*fullDist)[vec[i]][vec[j]] = std::move( temp );
+            ( *obj::fullDist )[ vec[ i ] ][ vec[ j ] ] = temp;
         }
     }
 }
 
 
-// init vector Ant
 void AntColony::initAntVec( std::vector< obj::ptrPoint >& vec )
 {
     for ( auto& elm : vec )
@@ -51,28 +57,39 @@ void AntColony::initAntVec( std::vector< obj::ptrPoint >& vec )
     }
 }
 
-
-// iteration on std::vector Ant
+/*
+ iteration on vector Ant
+ */
 void AntColony::iteration()
 {
+    // Count iter
+    if ( m_iter >= s_stopIter )
+        return;
+    ++m_iter;
+    
+    // The ants are passing a circle
     for ( auto& elm : vecAnt )
     {
         elm->next();
     }
     
+    // Forget pheromones
     for ( auto& elm1 : obj::vecPoints )
     {
         for ( auto& elm2 : obj::vecPoints )
         {
-            if (elm1 != elm2) (*fullDist)[ elm1 ][ elm2 ].P *= cP;
+            if (elm1 != elm2) 
+                ( *obj::fullDist )[ elm1 ][ elm2 ].P *= gColonyConst.cP;
         }
     }
     
+    // Update pheromones and best route
     for ( auto& elm : vecAnt )
     {
-        if ( elm->getDist() <= m_lengthRoute && elm->getDist() != 0 )
+        if ( elm->getDistance() <= m_lengthRoute && elm->getDistance() != 0 )
         {
-            m_lengthRoute = elm->getDist();
+            m_iter = 0;
+            m_lengthRoute = elm->getDistance();
             m_bestRoute = elm->getHistory();
             
             for ( size_t i = 1; i < elm->getHistory().size(); i++ )
@@ -80,17 +97,13 @@ void AntColony::iteration()
                 auto& first = elm->getHistory()[ i - 1 ];
                 auto& last = elm->getHistory()[ i ];
                 
-                double res = std::min( Q / ( DIST_CONST / elm->getDist() ), MAX_P );
-                (*fullDist)[ first ][ last ].P += res;
-                (*fullDist)[ last ][ first ].P += res;
+                double result = gColonyConst.Q / ( gColonyConst.dist / elm->getDistance() );
+                result = std::min( result, gColonyConst.maxP );
+                ( *obj::fullDist )[ first ][ last ].P += result;
+                ( *obj::fullDist )[ last ][ first ].P += result;
             }
         }
     }
 }
 
-
-double Ant::funcP(const obj::ptrPoint& elm)
-{
-    return pow( static_cast< double >( ( *fullDist )[ toPoint ][ elm ].P ), alpha ) *
-           pow( DIST_CONST / ( *fullDist )[ toPoint ][ elm ].distanceToPoint, beta );
-}
+} // end math::alg::colony space

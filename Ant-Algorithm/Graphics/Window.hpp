@@ -9,13 +9,12 @@
 #include "AlgorithmSystem.hpp"
 
 
-typedef unique_ptr< AlgorithmSystem>  AlgorithmSystemPtr;
+typedef unique_ptr< AlgorithmSystem >  AlgorithmSystemPtr;
 typedef unsigned int uint;
-using std::string;
 
 static bool lock_click = false;
-static bool enter_click = false;
-static size_t iter = 0;
+static bool gAlgorithmsIsWork = false;
+static std::size_t iter = 0;
 
 
 class Window
@@ -29,7 +28,7 @@ private:
     
 public:
     Window() = delete;
-    Window(uint , uint , string);
+    Window( uint , uint , std::string );
     
     bool isOpen();
     void update();

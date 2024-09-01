@@ -10,8 +10,12 @@
 
 #include "HashablePoint.hpp"
 
+
+double maxP();
+
+
 template < typename T >
-bool elemInVector(const T& elem, const std::vector< T > vec)
+bool elemInVector(const T& elem, const std::vector< T >& vec)
 {
     for (auto& elemInVecor : vec)
     {
@@ -21,5 +25,10 @@ bool elemInVector(const T& elem, const std::vector< T > vec)
     
     return false;
 }
+
+
+
+
+
 
 #endif /* Utils_hpp */

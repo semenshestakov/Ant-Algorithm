@@ -13,14 +13,14 @@ using std::unique_ptr, std::make_unique, std::vector;
 class AlgorithmSystem
 {
 private:
-    vector<BaseAlgorithm*> vectorAlgs;
+    vector< math::alg::BaseAlgorithm* > vectorAlgs;
     
 public:
     AlgorithmSystem() = default;
     ~AlgorithmSystem();
-    void add(BaseAlgorithm*);
+    void add( math::alg::BaseAlgorithm* );
     void iteration();
-    void draw(sf::RenderWindow&);
+    void draw( sf::RenderWindow& );
     
 };
 

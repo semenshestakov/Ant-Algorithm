@@ -1,8 +1,10 @@
 //  Created by Семён Шестаков on 01.06.2024.
 #include "AlgorithmSystem.hpp"
 
-AlgorithmSystem::~AlgorithmSystem() 
+
+AlgorithmSystem::~AlgorithmSystem()
 {
+    std::cout << "~AlgorithmSystem" << std::endl;
     for ( auto alg : vectorAlgs )
     {
         delete alg;
@@ -10,7 +12,7 @@ AlgorithmSystem::~AlgorithmSystem()
     vectorAlgs.clear();
 }
 
-void AlgorithmSystem::add( BaseAlgorithm* alg )
+void AlgorithmSystem::add( math::alg::BaseAlgorithm* alg )
 {
     vectorAlgs.push_back( alg );
 }
@@ -18,7 +20,7 @@ void AlgorithmSystem::add( BaseAlgorithm* alg )
 
 void AlgorithmSystem::iteration()
 {
-    for (auto& alg : vectorAlgs)
+    for ( auto& alg : vectorAlgs )
     {
         alg->iteration();
     }
@@ -29,7 +31,7 @@ void AlgorithmSystem::draw(sf::RenderWindow& window)
 {
     for (auto& alg : vectorAlgs)
     {
-        alg->draw(window);
+        alg->draw( window );
     }
     
 }

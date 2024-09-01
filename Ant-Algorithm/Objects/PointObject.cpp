@@ -12,6 +12,6 @@ namespace obj
 {
 
 std::vector< ptrPoint > vecPoints;
-
+math::mapPointPtr fullDist = std::make_shared< math::mapPoint >();
 }
 

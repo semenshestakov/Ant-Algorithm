@@ -3,36 +3,44 @@
 #define ClassAnt_hpp
 
 #include <random>
-#include "BaseAnt.hpp"
+#include "PointObject.hpp"
+#include "ColonyUtils.hpp"
 
 
-//typedef unordered_set<obj::ptrPoint, Point::SharedPtrHash, Point::SharedPtrEqual> setPoint;
-//typedef unordered_map<obj::ptrPoint, unordered_map<obj::ptrPoint, PointToPoint, Point::SharedPtrHash, Point::SharedPtrEqual>, Point::SharedPtrHash, Point::SharedPtrEqual> mapPoint;
-//typedef shared_ptr<mapPoint> mapPointPtr;
-
-extern math::mapPointPtr fullDist;
-
-class Ant : public virtual BaseAnt
+namespace math::alg::colony 
 {
-private:
-    double distance = 0;
-    double event = 0;
-    double pheromones = 0;
-    double funcP( const obj::ptrPoint& );
-    std::vector< obj::ptrPoint > history;
-    
-protected:
-    obj::ptrPoint fromPoint = NULL;
-    obj::ptrPoint toPoint = NULL;
-    virtual void nextVertex( obj::ptrPoint& );
-    virtual obj::ptrPoint popVertex();
 
+using math::setPoint, std::unique_ptr, std::make_unique;
+
+
+class Ant
+{
 public:
-    Ant();
+    Ant() = delete;
+    ~Ant() = default;
     Ant( obj::ptrPoint&, std::vector< obj::ptrPoint >& );
+    
+private: // Math && Base Logic
+    double calculateProbability( const obj::ptrPoint& );
+    void nextVertex( obj::ptrPoint& );
+    obj::ptrPoint popVertex();
+
+public: 
+    // Math && Base Logic
     void next();
-    double getDist();
+    
+    // Geters
+    double getDistance();
     std::vector< obj::ptrPoint >& getHistory();
+    
+private:
+    obj::ptrPoint m_start { nullptr }, m_fromPoint { nullptr }, m_toPoint { nullptr };
+    double m_distance {}, m_pheromones {};
+    
+    std::vector< obj::ptrPoint > m_history;
+    unique_ptr< setPoint > m_visit = make_unique< setPoint >();
+    unique_ptr< setPoint > m_noVisit = make_unique< setPoint >();
 };
 
+} // end math::alg::colony space
 #endif /* ClassAnt_hpp */
