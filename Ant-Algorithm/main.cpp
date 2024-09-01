@@ -31,8 +31,8 @@ void test(){
 Window window = {900, 600, "AntAlg"};
 
 int main() {
-    srand(time_t(nullptr));
-    while (window.isOpen())
+    srand( time_t( nullptr ) );
+    while ( window.isOpen() )
     {
         window.update();
     }

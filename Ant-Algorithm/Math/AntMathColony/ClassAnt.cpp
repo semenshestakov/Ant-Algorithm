@@ -1,88 +1,139 @@
 //  Created by Семён Шестаков on 12.11.2023.
 #include "ClassAnt.hpp"
 
-math::mapPointPtr fullDist = std::make_shared< math::mapPoint >();
-
-// Ant() - error
-Ant::Ant() : BaseAnt(){}
-
-// Constructor Ant(hared_ptr<Point>&, std::vector< obj::ptrPoint >&)
-Ant::Ant( obj::ptrPoint& start, std::vector< obj::ptrPoint >& vec) : BaseAnt( start, vec )
+namespace math::alg::colony
 {
-    fromPoint = start;
-    toPoint = start;
-}
+using std::static_pointer_cast;
 
-// flip toPoint and fromPoint with new point (next)
-void Ant::nextVertex( obj::ptrPoint& p )
+
+// = = = = = = = = = = = = = = = = = = = =
+//      Constructors and Distructors
+// = = = = = = = = = = = = = = = = = = = =
+Ant::Ant( obj::ptrPoint& start, std::vector< obj::ptrPoint >& vec)
 {
-    fromPoint = toPoint;
-    toPoint = p;
-    event = (*fullDist)[fromPoint][toPoint].distanceToPoint;
-    distance += event;
-    pheromones += (*fullDist)[fromPoint][toPoint].P;
-    history.push_back(p);
-}
-
-// raise next Point and del elem in _novisit and add elem _visit
-obj::ptrPoint Ant::popVertex(){
-    std::size_t count { novisit->size() }, i { 0 };
-    std::vector< double > probability( count, 0 );
-    double _rand = static_cast< double >( rand() ) / RAND_MAX;
-    double s = 0, _sum = 0;
+    if ( vec.size() <= 2 )
+        throw "[ERROR] vec.size() <= 2\n";
     
-    for ( auto& elm : *(novisit) )
+    this->m_start = start;
+    for ( std::size_t i = 0; i < vec.size(); i++ )
     {
-        obj::ptrPoint temp = std::static_pointer_cast<obj::Point>( elm );
-        probability[ i++ ] = funcP( temp );
-        _sum += probability[ i - 1 ];
-    }
 
-    i = 0;
-    for ( auto& elm : *novisit )
-    {
-        s += ( probability[ i ] / _sum );
-        
-        if ( _rand <= s )
+        if ( vec[ i ] != start )
         {
-            auto it = novisit->find(elm);
-            
-            if ( it != novisit->end() )
-            {
-                obj::ptrPoint res = std::static_pointer_cast< obj::Point >( elm );
-                visit->insert( res );
-                novisit->erase( it );
-                return res;
-            };
+            auto hashablePointPtr = static_pointer_cast< math::HashablePoint >( vec[ i ] );
+            m_noVisit->insert( hashablePointPtr );
         }
-        i++;
     }
     
-    auto it = novisit->begin();
-    math::HashablePointPtr res = *it;
-    visit->insert(res);
-    novisit->erase(it);
-    return std::static_pointer_cast< obj::Point >( res );
+    m_fromPoint = m_start;
+    m_toPoint = m_start;
 }
 
-// iter
+
+// = = = = = = = = = = = = = = = = = = = =
+//              Math Logic Ant
+// = = = = = = = = = = = = = = = = = = = =
+/*
+ @ flip toPoint and fromPoint with new point (next)
+ */
+void Ant::nextVertex( obj::ptrPoint& newPoint )
+{
+    m_fromPoint = m_toPoint;
+    m_toPoint = newPoint;
+    m_distance += ( *obj::fullDist )[ m_fromPoint ][ m_toPoint ].distanceToPoint;
+    m_pheromones += ( *obj::fullDist )[ m_fromPoint ][ m_toPoint ].P;
+    m_history.push_back( newPoint );
+}
+
+/*
+ @ raise next Point and del elem in m_noVisit and add elem m_visit
+ */
+obj::ptrPoint Ant::popVertex()
+{
+    std::size_t count { m_noVisit->size() }, index { 0 };
+    double localSum { 0 }, generalSum { 0 };
+    std::vector< double > m_probability( count, 0 );
+    
+    // Generate random value
+    double _rand = static_cast< double >( rand() ) / RAND_MAX;
+    
+    for ( auto& elm : *(m_noVisit) )
+    {
+        obj::ptrPoint temp = static_pointer_cast< obj::Point >( elm );
+        m_probability[ index++ ] = calculateProbability( temp );
+        generalSum += m_probability[ index - 1 ];
+    }
+    
+    index = 0;
+    for ( auto& point : *m_noVisit )
+    {
+        localSum += ( m_probability[ index ] / generalSum );
+        
+        if ( _rand <= localSum )
+        {
+            auto findedPoint = m_noVisit->find( point );
+            if ( findedPoint != m_noVisit->end() )
+            {
+                obj::ptrPoint result = static_pointer_cast< obj::Point >( point );
+                
+                m_visit->insert( result );
+                m_noVisit->erase( findedPoint );
+                
+                return result;
+            }
+        }
+        index++;
+    }
+    
+    auto firstPoint = m_noVisit->begin();
+    math::HashablePointPtr result = *firstPoint;
+    m_visit->insert( result );
+    m_noVisit->erase( firstPoint );
+    
+    return std::static_pointer_cast< obj::Point >( result );
+}
+
+/*
+ @ For this method, the ant goes full circle
+ */
 void Ant::next()
 {
-    event = 0;
-    distance = 0;
-    pheromones = 0;
-    history.clear();
-    history.push_back( start );
+    m_distance = m_pheromones = 0;
+    m_history.clear();
+    m_history.push_back( m_start );
     
-    while ( !novisit->empty() )
+    while ( !m_noVisit->empty() )
     {
         obj::ptrPoint temp = popVertex();
         nextVertex( temp );
     }
     
-    nextVertex( start );
-    novisit.swap( visit );
+    nextVertex( m_start );
+    m_noVisit.swap( m_visit );
 }
 
-double Ant::getDist(){return distance;}
-std::vector< obj::ptrPoint >& Ant::getHistory(){return history;}
+/*
+ calculate probability between the points
+ F_p(p1, p2) = ( p12.pheromone ^ alpha ) * ( p12.dist ^ beta )
+ */
+double Ant::calculateProbability( const obj::ptrPoint& point )
+{
+    return pow( static_cast< double >( ( *obj::fullDist )[ m_toPoint ][ point ].P ), gColonyConst.alpha ) *
+        pow( gColonyConst.dist / ( *obj::fullDist )[ m_toPoint ][ point ].distanceToPoint, gColonyConst.beta );
+}
+
+
+// = = = = = = = = = = = = = = = = = = = =
+//               GETERS
+// = = = = = = = = = = = = = = = = = = = =
+double Ant::getDistance()
+{
+    return m_distance;
+}
+
+std::vector< obj::ptrPoint >& Ant::getHistory()
+{
+    return m_history;
+}
+
+} // end math::alg::colony space

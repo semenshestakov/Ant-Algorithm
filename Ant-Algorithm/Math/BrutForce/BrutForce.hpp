@@ -6,23 +6,30 @@
 #include "BaseAlgorithm.hpp"
 
 
+namespace math::alg {
+
+
 class BrutForce : public BaseAlgorithm
 {
 public:
     BrutForce() = delete;
     BrutForce( std::vector< obj::ptrPoint >& );
-    void iteration() override ;
-    void draw( sf::RenderWindow& ) const override;
+    ~BrutForce() {}
     
-private:
+protected:
+    inline static AlgorithmTypes type = AlgorithmTypes::BRUT_FORCE;
+    int getType() const override { return BrutForce::type; }
+    
     const std::size_t m_maxLenRoute = 10;
-    double m_lengthRoute = 10e100;
-    std::vector< obj::ptrPoint > m_vectorPoints;
-    std::vector< obj::ptrPoint > m_bestRoute;
-    void _recursion( std::vector< obj::ptrPoint >&, double );
     bool m_isFinded = false;
-
+    
+public:
+    void iteration() override;
+    
+protected:
+    std::vector< obj::ptrPoint > m_vectorPoints;
+    void _recursion( std::vector< obj::ptrPoint >&, double );
 };
 
-
+} // end space math::alg
 #endif /* BrutForce_hpp */

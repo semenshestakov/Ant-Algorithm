@@ -15,7 +15,6 @@
 		A8D5220F2C0B778000611737 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D5220D2C0B778000611737 /* Window.cpp */; };
 		A8D522272C0B97C600611737 /* ClassAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522222C0B97C600611737 /* ClassAnt.cpp */; };
 		A8D522282C0B97C600611737 /* AntColony.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522232C0B97C600611737 /* AntColony.cpp */; };
-		A8D522292C0B97C600611737 /* BaseAnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522242C0B97C600611737 /* BaseAnt.cpp */; };
 		A8D522322C0BA68B00611737 /* BrutForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522312C0BA68B00611737 /* BrutForce.cpp */; };
 		A8D522362C0BA89B00611737 /* AlgorithmSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522342C0BA89B00611737 /* AlgorithmSystem.cpp */; };
 		A8D5223A2C0BB49100611737 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D522392C0BB49100611737 /* draw.cpp */; };
@@ -47,12 +46,11 @@
 		A840F9142C7BD1FC0079B2BF /* DrawConstans.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawConstans.hpp; sourceTree = "<group>"; };
 		A840F9242C84DD1B0079B2BF /* PointObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointObject.cpp; sourceTree = "<group>"; };
 		A840F9252C84DD1B0079B2BF /* PointObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PointObject.hpp; sourceTree = "<group>"; };
+		A883EB932C97653A004D259D /* ColonyUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColonyUtils.hpp; sourceTree = "<group>"; };
 		A8D5220D2C0B778000611737 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		A8D5220E2C0B778000611737 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
-		A8D522212C0B97C600611737 /* BaseAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseAnt.hpp; sourceTree = "<group>"; };
 		A8D522222C0B97C600611737 /* ClassAnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassAnt.cpp; sourceTree = "<group>"; };
 		A8D522232C0B97C600611737 /* AntColony.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AntColony.cpp; sourceTree = "<group>"; };
-		A8D522242C0B97C600611737 /* BaseAnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAnt.cpp; sourceTree = "<group>"; };
 		A8D522252C0B97C600611737 /* ClassAnt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClassAnt.hpp; sourceTree = "<group>"; };
 		A8D522262C0B97C600611737 /* AntColony.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AntColony.hpp; sourceTree = "<group>"; };
 		A8D5222B2C0BA31400611737 /* BaseAlgorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAlgorithm.hpp; sourceTree = "<group>"; };
@@ -164,12 +162,11 @@
 		A8D522202C0B97C600611737 /* AntMathColony */ = {
 			isa = PBXGroup;
 			children = (
-				A8D522212C0B97C600611737 /* BaseAnt.hpp */,
 				A8D522222C0B97C600611737 /* ClassAnt.cpp */,
 				A8D522232C0B97C600611737 /* AntColony.cpp */,
-				A8D522242C0B97C600611737 /* BaseAnt.cpp */,
 				A8D522252C0B97C600611737 /* ClassAnt.hpp */,
 				A8D522262C0B97C600611737 /* AntColony.hpp */,
+				A883EB932C97653A004D259D /* ColonyUtils.hpp */,
 			);
 			path = AntMathColony;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 				A8D522282C0B97C600611737 /* AntColony.cpp in Sources */,
 				A8D522362C0BA89B00611737 /* AlgorithmSystem.cpp in Sources */,
 				A840F90F2C7A107A0079B2BF /* DrawPoint.cpp in Sources */,
-				A8D522292C0B97C600611737 /* BaseAnt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

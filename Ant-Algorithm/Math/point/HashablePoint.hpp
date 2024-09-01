@@ -44,6 +44,8 @@ public:
 
     bool operator==( const HashablePointPtr ) const;
 };
+
+
 bool operator!=( const HashablePointPtr, const HashablePointPtr );
 
 

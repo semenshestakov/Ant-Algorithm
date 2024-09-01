@@ -5,32 +5,36 @@
 #define AntColony_hpp
 
 #include "ClassAnt.hpp"
-#include "../BaseAlgorithm.hpp"
-
-#define DIST_CONST 200.0
-#define Q 10.0
-#define cP 0.7
-#define MAX_P 0.5
-#define alpha 0.5 // P
-#define beta 1. // dist
-#define STOP_ITER 100 // dist
+#include "BaseAlgorithm.hpp"
 
 
+namespace math::alg::colony
+{
+
+/*
+ A class that is a colony of ants, where each sea starts from a different position
+ */
 class AntColony : public BaseAlgorithm
 {
-private:
+public:
+    AntColony() = delete;
+    AntColony( std::vector< obj::ptrPoint >& );
+    ~AntColony() = default;
+    
+protected:
+    inline static AlgorithmTypes type = AlgorithmTypes::ANT_COLONY;
     std::vector< std::shared_ptr< Ant > > vecAnt;
-    std::size_t iter = 0;
+    std::size_t m_iter = 0;
     
 public:
-    AntColony();
-    AntColony( std::vector< obj::ptrPoint >& );
+    int getType() const override  { return AntColony::type; }
     void calcDist( std::vector< obj::ptrPoint >& );
     void initAntVec( std::vector< obj::ptrPoint >& );
     void iteration() override;
-    void draw( sf::RenderWindow& ) const override;
+
+private:
+    inline static std::size_t s_stopIter = 100;
 };
 
-
-
+} // end math::alg::colony space
 #endif /* AntColony_hpp */

@@ -25,6 +25,7 @@ public:
 
 typedef std::shared_ptr< Point > ptrPoint;
 extern std::vector< ptrPoint > vecPoints;
+extern math::mapPointPtr fullDist;
 }
 
 #endif /* PointObject_hpp */
