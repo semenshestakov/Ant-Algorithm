@@ -11,14 +11,14 @@
 
 
 void drawLines( sf::RenderWindow& );
-void drawVecPoints( sf::RenderWindow& );
+void drawPoints( sf::RenderWindow& );
 
 namespace draw
 {
 
 struct ColorLine
 {
-    inline static draw::Color_t colorsByType[ math::alg::AlgorithmTypes::MAX_VALUE ] =  // AlgorithmTypes
+    inline static draw::Color_t s_colorsByType[ math::alg::AlgorithmTypes::MAX_VALUE ] =  // AlgorithmTypes
     {
         LineColors::standart,
         LineColors::antColony,
@@ -28,7 +28,7 @@ struct ColorLine
     template < typename T >
     static Color_t& get( T index )
     {
-        return colorsByType[ index ];
+        return s_colorsByType[ index ];
     };
     
 };

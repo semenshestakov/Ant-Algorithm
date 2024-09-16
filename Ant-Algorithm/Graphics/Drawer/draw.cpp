@@ -36,7 +36,7 @@ void drawLines( sf::RenderWindow& window )
 }
 
 // draw point on window
-void drawVecPoints( sf::RenderWindow& win )
+void drawPoints( sf::RenderWindow& win )
 {
     for ( auto& point : systems::pointSys.getPoints() ) 
     {

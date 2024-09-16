@@ -11,6 +11,7 @@ namespace draw
 
 typedef const sf::Color Color_t;
 
+
 struct LineColors
 {
     inline static Color_t standart      = sf::Color(230, 175, 44);
