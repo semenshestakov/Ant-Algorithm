@@ -2,19 +2,20 @@
 
 #include "Utils.hpp"
 #include "PointObject.hpp"
+#include "PointsSystem.hpp"
 
 
 double maxP()
 {
     double _max = 0, n = 1;
     
-    for (auto& elm1 : obj::vecPoints)
+    for ( const auto& point1 : systems::pointSys.getPoints() )
     {
-        for (auto& elm2 : obj::vecPoints)
+        for ( const auto& point2 : systems::pointSys.getPoints() )
         {
-            if (_max < ( *obj::fullDist )[ elm1 ][ elm2 ].P)
+            if ( _max < systems::pointSys[ point1 ][ point2 ].P )
             {
-                _max += ( *obj::fullDist )[ elm1 ][ elm2 ].P;
+                _max += systems::pointSys[ point1 ][ point2 ].P;
             }
             n++;
         }

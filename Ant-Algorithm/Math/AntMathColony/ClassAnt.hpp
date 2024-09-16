@@ -5,6 +5,7 @@
 #include <random>
 #include "PointObject.hpp"
 #include "ColonyUtils.hpp"
+#include "ClassUtils.hpp"
 
 
 namespace math::alg::colony 
@@ -19,6 +20,8 @@ public:
     Ant() = delete;
     ~Ant() = default;
     Ant( obj::ptrPoint&, std::vector< obj::ptrPoint >& );
+    
+    DELETE_COPY_AND_MOVE(Ant)
     
 private: // Math && Base Logic
     double calculateProbability( const obj::ptrPoint& );

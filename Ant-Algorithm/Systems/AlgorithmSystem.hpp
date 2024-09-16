@@ -6,9 +6,13 @@
 #include <memory>
 #include <functional>
 #include "../Math/BaseAlgorithm.hpp"
+#include "ClassUtils.hpp"
 
+namespace systems
+{
 
 using std::unique_ptr, std::make_unique, std::vector;
+
 
 class AlgorithmSystem
 {
@@ -18,11 +22,17 @@ private:
 public:
     AlgorithmSystem() = default;
     ~AlgorithmSystem();
+    
+    DELETE_COPY_AND_MOVE(AlgorithmSystem)
+    
+public: // Metods
     void add( math::alg::BaseAlgorithm* );
     void iteration();
     void draw( sf::RenderWindow& );
     
 };
 
+typedef unique_ptr< AlgorithmSystem >  AlgorithmSystemPtr;
 
+} // end namespace systems
 #endif /* AlgorithmSystem_hpp */

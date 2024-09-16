@@ -1,5 +1,7 @@
 //  Created by Семён Шестаков on 12.11.2023.
 #include "ClassAnt.hpp"
+#include "PointsSystem.hpp"
+
 
 namespace math::alg::colony
 {
@@ -40,8 +42,8 @@ void Ant::nextVertex( obj::ptrPoint& newPoint )
 {
     m_fromPoint = m_toPoint;
     m_toPoint = newPoint;
-    m_distance += ( *obj::fullDist )[ m_fromPoint ][ m_toPoint ].distanceToPoint;
-    m_pheromones += ( *obj::fullDist )[ m_fromPoint ][ m_toPoint ].P;
+    m_distance += systems::pointSys[ m_fromPoint ][ m_toPoint ].distance;
+    m_pheromones += systems::pointSys[ m_fromPoint ][ m_toPoint ].P;
     m_history.push_back( newPoint );
 }
 
@@ -118,8 +120,8 @@ void Ant::next()
  */
 double Ant::calculateProbability( const obj::ptrPoint& point )
 {
-    return pow( static_cast< double >( ( *obj::fullDist )[ m_toPoint ][ point ].P ), gColonyConst.alpha ) *
-        pow( gColonyConst.dist / ( *obj::fullDist )[ m_toPoint ][ point ].distanceToPoint, gColonyConst.beta );
+    return pow( static_cast< double >( systems::pointSys[ m_toPoint ][ point ].P ), gColonyConst.alpha ) *
+        pow( gColonyConst.dist / systems::pointSys[ m_toPoint ][ point ].distance, gColonyConst.beta );
 }
 
 

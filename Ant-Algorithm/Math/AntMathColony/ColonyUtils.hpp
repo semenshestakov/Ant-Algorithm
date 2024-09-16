@@ -1,16 +1,12 @@
-//
-//  ColonyUtils.hpp
-//  Ant-Algorithm
-//
 //  Created by Семён Шестаков on 15.09.2024.
-//
+
 
 #ifndef ColonyUtils_hpp
 #define ColonyUtils_hpp
 
+
 namespace math::alg::colony
 {
-
 
 /*
  @param dict - responsible for the distance metric, according to the formula F_1(dist) = dictConst / dist
@@ -18,9 +14,9 @@ namespace math::alg::colony
  @param cP - coefficient of forgetting previous routes
  @param maxP - maximum contribution of an ant in one round
  @param alpha - final contribution of pheromones,
- according to the formula F_3(p_1, p_2, alpha) = p_12.pheromone ^ alpha
+                according to the formula F_3(p_1, p_2, alpha) = p_12.pheromone ^ alpha
  @param beta - final contribution of dist,
- according to the formula F_3(p_1, p_2, alpha) = p_12.dist ^ alpha
+                according to the formula F_3(p_1, p_2, alpha) = p_12.dist ^ alpha
  */
 struct ColonyConstants
 {

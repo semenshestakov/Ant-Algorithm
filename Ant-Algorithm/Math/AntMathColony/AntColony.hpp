@@ -6,6 +6,7 @@
 
 #include "ClassAnt.hpp"
 #include "BaseAlgorithm.hpp"
+#include "ClassUtils.hpp"
 
 
 namespace math::alg::colony
@@ -21,6 +22,8 @@ public:
     AntColony( std::vector< obj::ptrPoint >& );
     ~AntColony() = default;
     
+    DELETE_COPY_AND_MOVE(AntColony)
+    
 protected:
     inline static AlgorithmTypes type = AlgorithmTypes::ANT_COLONY;
     std::vector< std::shared_ptr< Ant > > vecAnt;
@@ -28,12 +31,11 @@ protected:
     
 public:
     int getType() const override  { return AntColony::type; }
-    void calcDist( std::vector< obj::ptrPoint >& );
     void initAntVec( std::vector< obj::ptrPoint >& );
     void iteration() override;
 
 private:
-    inline static std::size_t s_stopIter = 100;
+    inline static std::size_t s_stopIter = 100000;
 };
 
 } // end math::alg::colony space

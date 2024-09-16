@@ -4,6 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "PointObject.hpp"
+#include "ClassUtils.hpp"
+
 
 namespace math::alg
 {
@@ -31,7 +33,10 @@ protected:
     double m_lengthRoute = 10e100;
     
 public:
+    BaseAlgorithm() = default;
     virtual ~BaseAlgorithm() { m_bestRoute.clear(); }
+    
+    DELETE_COPY_AND_MOVE(BaseAlgorithm)
 };
 
 } // end space math::alg
