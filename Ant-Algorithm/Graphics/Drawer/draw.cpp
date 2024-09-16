@@ -1,5 +1,6 @@
 #include "draw.hpp"
 #include "Utils.hpp"
+#include "PointsSystem.hpp"
 
 
 // help function
@@ -15,18 +16,18 @@ sf::ConvexShape& Line( sf::ConvexShape& convex, const sf::Vector2f v1, const sf:
 }
 
 // draw full lines
-void drawLines(sf::RenderWindow& window)
+void drawLines( sf::RenderWindow& window )
 {
     double _max = maxP() + 0.01;
     
-    for (auto& elm1 : obj::vecPoints)
+    for ( auto& point1 : systems::pointSys.getPoints() )
     {
-        for (auto& elm2 : obj::vecPoints)
+        for ( auto& point2 : systems::pointSys.getPoints() )
         {
             sf::ConvexShape convex;
-            Line( convex, elm1->getVetrexDraw(), elm2->getVetrexDraw() );
+            Line( convex, point1->getVetrexDraw(), point2->getVetrexDraw() );
             
-            float outlineThickness = ( ( *obj::fullDist )[ elm1 ][ elm2 ].P / _max + 2.0 ) * 0.7;
+            float outlineThickness = ( systems::pointSys[ point1 ][ point2 ].P / _max + 2.0 ) * 0.7;
             convex.setOutlineThickness( outlineThickness );
             convex.setOutlineColor( draw::LineColors::standart );
             window.draw( convex );
@@ -35,30 +36,30 @@ void drawLines(sf::RenderWindow& window)
 }
 
 // draw point on window
-void drawVecPoints(sf::RenderWindow& win)
+void drawVecPoints( sf::RenderWindow& win )
 {
-    for (auto& elm : obj::vecPoints) 
+    for ( auto& point : systems::pointSys.getPoints() ) 
     {
-        win.draw( elm->getCircle() );
+        win.draw( point->getCircle() );
     }
 }
 
 
 void math::alg::BaseAlgorithm::draw( sf::RenderWindow& window ) const
 {
-    for (size_t i = 1; i < m_bestRoute.size(); i++)
+    for ( std::size_t i = 1; i < m_bestRoute.size(); i++ )
     {
-        auto& elm1 = m_bestRoute[ i - 1 ];
-        auto& elm2 = m_bestRoute[ i ];
+        auto& point1 = m_bestRoute[ i - 1 ];
+        auto& point2 = m_bestRoute[ i ];
         
         sf::ConvexShape convex;
-        Line(convex, elm1->getVetrexDraw(), elm2->getVetrexDraw());
+        Line(convex, point1->getVetrexDraw(), point2->getVetrexDraw());
             
         float outlineThickness = MAX_LINE;
         convex.setOutlineThickness( outlineThickness );
         
         convex.setOutlineColor( draw::ColorLine::get < int >( this->getType() ) );
-        window.draw(convex);
+        window.draw( convex );
     }
 }
 

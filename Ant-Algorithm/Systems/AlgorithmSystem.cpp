@@ -1,10 +1,12 @@
 //  Created by Семён Шестаков on 01.06.2024.
 #include "AlgorithmSystem.hpp"
 
+namespace systems
+{
+
 
 AlgorithmSystem::~AlgorithmSystem()
 {
-    std::cout << "~AlgorithmSystem" << std::endl;
     for ( auto alg : vectorAlgs )
     {
         delete alg;
@@ -33,5 +35,6 @@ void AlgorithmSystem::draw(sf::RenderWindow& window)
     {
         alg->draw( window );
     }
-    
 }
+
+} // end namespace systems

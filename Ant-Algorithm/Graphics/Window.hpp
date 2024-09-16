@@ -7,9 +7,9 @@
 #include "AntColony.hpp"
 #include "BrutForce.hpp"
 #include "AlgorithmSystem.hpp"
+#include "ClassUtils.hpp"
 
 
-typedef unique_ptr< AlgorithmSystem >  AlgorithmSystemPtr;
 typedef unsigned int uint;
 
 static bool lock_click = false;
@@ -21,7 +21,7 @@ class Window
 {
 private:
     sf::RenderWindow window;
-    AlgorithmSystemPtr algSystem = nullptr;
+    systems::AlgorithmSystemPtr algSystem = nullptr;
     void eventHandler();
     void _clear();
     void _start();
@@ -29,6 +29,8 @@ private:
 public:
     Window() = delete;
     Window( uint , uint , std::string );
+    
+    DELETE_COPY_AND_MOVE(Window)
     
     bool isOpen();
     void update();

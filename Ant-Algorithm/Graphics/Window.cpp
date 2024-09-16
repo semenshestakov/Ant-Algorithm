@@ -1,10 +1,11 @@
 //  Created by Семён Шестаков on 01.06.2024.
 #include "Window.hpp"
+#include "PointsSystem.hpp"
 
 
 Window::Window( uint _x, uint _y, std::string _name ) : window( sf::VideoMode( _x, _y ), _name )
 {
-    algSystem = make_unique< AlgorithmSystem >();
+    algSystem = std::make_unique< systems::AlgorithmSystem >();
 }
 
 
@@ -41,7 +42,7 @@ void Window::eventHandler()
             if ( event.mouseButton.button == sf::Mouse::Left && lock_click != true )
             {
                 obj::ptrPoint temp ( new obj::Point( X, Y ) );
-                obj::vecPoints.push_back( temp );
+                systems::pointSys.add( temp );
             }
         }
         
@@ -53,6 +54,7 @@ void Window::eventHandler()
                 lock_click = false;
             }
         }
+        
     }
 }
 
@@ -83,20 +85,18 @@ void Window::update()
 
 void Window::_clear()
 {
-    // Global
-    obj::vecPoints = {};
-    //obj::fullDist = {};
     iter = 0;
     
     // Instance
     algSystem = nullptr;
+    systems::pointSys.clear();
     
 }
 
 
 void Window::_start()
 {    
-    algSystem = make_unique< AlgorithmSystem >();
-    //algSystem->add( new math::alg::colony::AntColony( obj::vecPoints ) );
-    algSystem->add( new math::alg::BrutForce( obj::vecPoints ) );
+    algSystem = std::make_unique< systems::AlgorithmSystem >();
+    algSystem->add( new math::alg::colony::AntColony( systems::pointSys.getPoints() ) );
+    algSystem->add( new math::alg::BrutForce( systems::pointSys.getPoints() ) );
 }

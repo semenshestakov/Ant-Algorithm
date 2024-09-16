@@ -4,6 +4,7 @@
 
 #include "Utils.hpp"
 #include "BaseAlgorithm.hpp"
+#include "ClassUtils.hpp"
 
 
 namespace math::alg {
@@ -14,7 +15,9 @@ class BrutForce : public BaseAlgorithm
 public:
     BrutForce() = delete;
     BrutForce( std::vector< obj::ptrPoint >& );
-    ~BrutForce() {}
+    ~BrutForce() = default;
+    
+    DELETE_COPY_AND_MOVE(BrutForce)
     
 protected:
     inline static AlgorithmTypes type = AlgorithmTypes::BRUT_FORCE;

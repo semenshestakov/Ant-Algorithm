@@ -10,8 +10,8 @@
 #define MAX_LINE 5.0
 
 
-void drawLines(sf::RenderWindow&);
-void drawVecPoints(sf::RenderWindow&);
+void drawLines( sf::RenderWindow& );
+void drawVecPoints( sf::RenderWindow& );
 
 namespace draw
 {

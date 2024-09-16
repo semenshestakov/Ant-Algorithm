@@ -51,7 +51,7 @@ bool operator!=( const HashablePointPtr, const HashablePointPtr );
 
 struct PointToPoint
 {
-    double distanceToPoint = 0;
+    double distance = 0;
     double P = 0.2;
 };
 

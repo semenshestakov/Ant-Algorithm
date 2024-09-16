@@ -33,7 +33,7 @@ std::size_t HashablePoint::getIdentifier() const
 
 
 // = = = = = = = = = = = = = = = = = = = =
-//                  Operators
+//                Operators
 // = = = = = = = = = = = = = = = = = = = =
 bool operator!=( const HashablePointPtr p1, const HashablePointPtr p2 )
 {

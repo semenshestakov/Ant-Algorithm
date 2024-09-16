@@ -1,5 +1,6 @@
 //  Created by Семён Шестаков on 30.12.2023.
 #include "AntColony.hpp"
+#include "PointsSystem.hpp"
 
 
 namespace math::alg::colony
@@ -13,41 +14,12 @@ AntColony::AntColony( std::vector< obj::ptrPoint >& vec )
     if ( vec.size() < 2 )
         throw "[ERROR] vec.size() <= 2\n";
     
-    obj::fullDist = std::make_shared< math::mapPoint >();
     initAntVec( vec );
-    calcDist( vec );
 }
 
 // = = = = = = = = = = = = = = = = = = = =
 //           Math && Base Logic
 // = = = = = = = = = = = = = = = = = = = =
-
-/* 
- calc euclideanDistance many points to many points
- */
-void AntColony::calcDist( std::vector< obj::ptrPoint >& vec )
-{
-    for ( size_t i = 0; i < vec.size(); i++ )
-    {
-        for ( size_t j = 0; j < vec.size(); j++ )
-        {
-            double t = 0.2;
-            if ( i == j )
-            {
-                t = 0;
-            }
-            
-            struct math::PointToPoint&& temp
-            {
-                .distanceToPoint = vec[i]->distance( *vec[j] ),
-                .P = t
-            };
-            ( *obj::fullDist )[ vec[ i ] ][ vec[ j ] ] = temp;
-        }
-    }
-}
-
-
 void AntColony::initAntVec( std::vector< obj::ptrPoint >& vec )
 {
     for ( auto& elm : vec )
@@ -74,12 +46,12 @@ void AntColony::iteration()
     }
     
     // Forget pheromones
-    for ( auto& elm1 : obj::vecPoints )
+    for ( auto& elm1 : systems::pointSys.getPoints() )
     {
-        for ( auto& elm2 : obj::vecPoints )
+        for ( auto& elm2 : systems::pointSys.getPoints() )
         {
             if (elm1 != elm2) 
-                ( *obj::fullDist )[ elm1 ][ elm2 ].P *= gColonyConst.cP;
+                systems::pointSys[ elm1 ][ elm2 ].P *= gColonyConst.cP;
         }
     }
     
@@ -99,8 +71,8 @@ void AntColony::iteration()
                 
                 double result = gColonyConst.Q / ( gColonyConst.dist / elm->getDistance() );
                 result = std::min( result, gColonyConst.maxP );
-                ( *obj::fullDist )[ first ][ last ].P += result;
-                ( *obj::fullDist )[ last ][ first ].P += result;
+                systems::pointSys[ first ][ last ].P += result;
+                systems::pointSys[ last ][ first ].P += result;
             }
         }
     }
