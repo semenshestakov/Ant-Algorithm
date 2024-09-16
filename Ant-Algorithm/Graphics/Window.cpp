@@ -78,7 +78,7 @@ void Window::update()
         
     }
     
-    drawVecPoints( window );
+    drawPoints( window );
     window.display();
 }
 
