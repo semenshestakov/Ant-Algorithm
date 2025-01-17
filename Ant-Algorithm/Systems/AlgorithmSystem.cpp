@@ -14,6 +14,7 @@ AlgorithmSystem::~AlgorithmSystem()
     vectorAlgs.clear();
 }
 
+
 void AlgorithmSystem::add( math::alg::BaseAlgorithm* alg )
 {
     vectorAlgs.push_back( alg );

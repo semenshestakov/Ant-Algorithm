@@ -28,7 +28,7 @@ private:
     
 public:
     Window() = delete;
-    Window( uint , uint , std::string );
+    Window( const uint , const uint , const std::string );
     
     DELETE_COPY_AND_MOVE(Window)
     

@@ -20,7 +20,7 @@ Point::~Point()
 
 
 // - - - - - - - - - Math - - - - - - - - -
-double Point::distance( const Point& other )
+[[nodiscard]] double Point::distance( const Point& other )
 {
     return hypot( x - other.x, y - other.y );
 }
@@ -29,7 +29,7 @@ double Point::distance( const Point& other )
 // - - - - - - - - - Operators - - - - - - - - -
 std::ostream& operator<<( std::ostream& os, const Point& point )
 {
-    os << "Point(" << point.x << ", " << point.y << ")";
+    os << "Point(" << point.x << ", " << point.y << ")::hash-" << point.hash;
     return os;
 }
 

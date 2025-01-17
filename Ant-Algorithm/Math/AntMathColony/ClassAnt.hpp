@@ -3,7 +3,7 @@
 #define ClassAnt_hpp
 
 #include <random>
-#include "PointObject.hpp"
+#include "DrawPoint.hpp"
 #include "ColonyUtils.hpp"
 #include "ClassUtils.hpp"
 
@@ -11,7 +11,7 @@
 namespace math::alg::colony 
 {
 
-using math::setPoint, std::unique_ptr, std::make_unique;
+using draw::setPoint, std::unique_ptr, std::make_unique;
 
 
 class Ant
@@ -19,14 +19,14 @@ class Ant
 public:
     Ant() = delete;
     ~Ant() = default;
-    Ant( obj::ptrPoint&, std::vector< obj::ptrPoint >& );
+    Ant( draw::ptrPoint&, draw::vectorPoint& );
     
     DELETE_COPY_AND_MOVE(Ant)
     
 private: // Math && Base Logic
-    double calculateProbability( const obj::ptrPoint& );
-    void nextVertex( obj::ptrPoint& );
-    obj::ptrPoint popVertex();
+    double calculateProbability( const std::size_t );
+    void nextVertex( const std::size_t );
+    std::size_t popVertex();
 
 public: 
     // Math && Base Logic
@@ -34,13 +34,13 @@ public:
     
     // Geters
     double getDistance();
-    std::vector< obj::ptrPoint >& getHistory();
+    std::vector< std::size_t >& getHistory();
     
 private:
-    obj::ptrPoint m_start { nullptr }, m_fromPoint { nullptr }, m_toPoint { nullptr };
-    double m_distance {}, m_pheromones {};
+    std::size_t m_start {}, m_fromPoint { }, m_toPoint { };
+    double m_distance {10e100}, m_pheromones {};
     
-    std::vector< obj::ptrPoint > m_history;
+    std::vector< std::size_t > m_history = {};
     unique_ptr< setPoint > m_visit = make_unique< setPoint >();
     unique_ptr< setPoint > m_noVisit = make_unique< setPoint >();
 };

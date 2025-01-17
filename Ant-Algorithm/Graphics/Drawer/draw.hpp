@@ -7,7 +7,7 @@
 #include "DrawConstans.hpp"
 
 
-#define MAX_LINE 5.0
+constexpr float max_line_size = 5.0;
 
 
 void drawLines( sf::RenderWindow& );
@@ -25,8 +25,7 @@ struct ColorLine
         LineColors::brutForce
     };
     
-    template < typename T >
-    static Color_t& get( T index )
+    static Color_t& get( const int index )
     {
         return s_colorsByType[ index ];
     };

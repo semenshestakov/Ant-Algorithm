@@ -19,7 +19,7 @@ class AntColony : public BaseAlgorithm
 {
 public:
     AntColony() = delete;
-    AntColony( std::vector< obj::ptrPoint >& );
+    AntColony( draw::vectorPoint& );
     ~AntColony() = default;
     
     DELETE_COPY_AND_MOVE(AntColony)
@@ -31,7 +31,6 @@ protected:
     
 public:
     int getType() const override  { return AntColony::type; }
-    void initAntVec( std::vector< obj::ptrPoint >& );
     void iteration() override;
 
 private:
