@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A839C13D2B113EF400394E50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A839C1392B113EF400394E50 /* main.cpp */; };
 		A840F9032C792AEA0079B2BF /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A840F9022C792AEA0079B2BF /* Point.cpp */; };
-		A840F9062C792C2A0079B2BF /* HashablePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A840F9042C792C2A0079B2BF /* HashablePoint.cpp */; };
 		A840F90F2C7A107A0079B2BF /* DrawPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A840F90D2C7A107A0079B2BF /* DrawPoint.cpp */; };
 		A883EB992C976DD6004D259D /* AlgorithmSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A883EB982C976DD6004D259D /* AlgorithmSystem.cpp */; };
 		A883EB9F2C977DB0004D259D /* PointsSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A883EB9D2C977DB0004D259D /* PointsSystem.cpp */; };
@@ -38,13 +37,9 @@
 		A839C1392B113EF400394E50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A840F9012C792AEA0079B2BF /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		A840F9022C792AEA0079B2BF /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
-		A840F9042C792C2A0079B2BF /* HashablePoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HashablePoint.cpp; sourceTree = "<group>"; };
-		A840F9052C792C2A0079B2BF /* HashablePoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashablePoint.hpp; sourceTree = "<group>"; };
-		A840F9082C792DF00079B2BF /* HashablePoint.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HashablePoint.ipp; sourceTree = "<group>"; };
 		A840F90D2C7A107A0079B2BF /* DrawPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawPoint.cpp; sourceTree = "<group>"; };
 		A840F90E2C7A107A0079B2BF /* DrawPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawPoint.hpp; sourceTree = "<group>"; };
 		A840F9142C7BD1FC0079B2BF /* DrawConstans.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawConstans.hpp; sourceTree = "<group>"; };
-		A840F9252C84DD1B0079B2BF /* PointObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PointObject.hpp; sourceTree = "<group>"; };
 		A883EB932C97653A004D259D /* ColonyUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColonyUtils.hpp; sourceTree = "<group>"; };
 		A883EB972C976DD6004D259D /* AlgorithmSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AlgorithmSystem.hpp; sourceTree = "<group>"; };
 		A883EB982C976DD6004D259D /* AlgorithmSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmSystem.cpp; sourceTree = "<group>"; };
@@ -99,7 +94,6 @@
 			children = (
 				A883EB962C976DD6004D259D /* Systems */,
 				A8D522092C0B772F00611737 /* Graphics */,
-				A840F9202C84DCD70079B2BF /* Objects */,
 				A8D5221A2C0B972C00611737 /* Math */,
 				A8FD3CF32B114873001AAE24 /* README.md */,
 				A883EBA32C981EB6004D259D /* ClassUtils.hpp */,
@@ -111,11 +105,8 @@
 		A840F9002C792AEA0079B2BF /* point */ = {
 			isa = PBXGroup;
 			children = (
-				A840F9082C792DF00079B2BF /* HashablePoint.ipp */,
 				A840F9012C792AEA0079B2BF /* Point.hpp */,
 				A840F9022C792AEA0079B2BF /* Point.cpp */,
-				A840F9042C792C2A0079B2BF /* HashablePoint.cpp */,
-				A840F9052C792C2A0079B2BF /* HashablePoint.hpp */,
 			);
 			path = point;
 			sourceTree = "<group>";
@@ -127,14 +118,6 @@
 				A840F90E2C7A107A0079B2BF /* DrawPoint.hpp */,
 			);
 			path = objects;
-			sourceTree = "<group>";
-		};
-		A840F9202C84DCD70079B2BF /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				A840F9252C84DD1B0079B2BF /* PointObject.hpp */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 		A883EB962C976DD6004D259D /* Systems */ = {
@@ -263,7 +246,6 @@
 				A883EB992C976DD6004D259D /* AlgorithmSystem.cpp in Sources */,
 				A839C13D2B113EF400394E50 /* main.cpp in Sources */,
 				A8D522322C0BA68B00611737 /* BrutForce.cpp in Sources */,
-				A840F9062C792C2A0079B2BF /* HashablePoint.cpp in Sources */,
 				A8D5223D2C0BD2D200611737 /* Utils.cpp in Sources */,
 				A840F9032C792AEA0079B2BF /* Point.cpp in Sources */,
 				A883EB9F2C977DB0004D259D /* PointsSystem.cpp in Sources */,

@@ -14,7 +14,7 @@ class BrutForce : public BaseAlgorithm
 {
 public:
     BrutForce() = delete;
-    BrutForce( std::vector< obj::ptrPoint >& );
+    BrutForce( draw::vectorPoint& );
     ~BrutForce() = default;
     
     DELETE_COPY_AND_MOVE(BrutForce)
@@ -30,8 +30,8 @@ public:
     void iteration() override;
     
 protected:
-    std::vector< obj::ptrPoint > m_vectorPoints;
-    void _recursion( std::vector< obj::ptrPoint >&, double );
+    std::vector< draw::ptrPoint > m_vectorPoints;
+    void _recursion( std::vector< draw::ptrPoint >&, double );
 };
 
 } // end space math::alg

@@ -9,25 +9,21 @@ namespace math::alg::colony
 // = = = = = = = = = = = = = = = = = = = =
 //      Constructors and Distructors
 // = = = = = = = = = = = = = = = = = = = =
-AntColony::AntColony( std::vector< obj::ptrPoint >& vec )
+AntColony::AntColony( draw::vectorPoint& vec )
 {
     if ( vec.size() < 2 )
         throw "[ERROR] vec.size() <= 2\n";
     
-    initAntVec( vec );
-}
-
-// = = = = = = = = = = = = = = = = = = = =
-//           Math && Base Logic
-// = = = = = = = = = = = = = = = = = = = =
-void AntColony::initAntVec( std::vector< obj::ptrPoint >& vec )
-{
     for ( auto& elm : vec )
     {
         std::shared_ptr< Ant > temp = make_shared< Ant >( elm, vec );
         vecAnt.push_back( temp );
     }
 }
+
+// = = = = = = = = = = = = = = = = = = = =
+//           Math && Base Logic
+// = = = = = = = = = = = = = = = = = = = =
 
 /*
  iteration on vector Ant
@@ -36,7 +32,9 @@ void AntColony::iteration()
 {
     // Count iter
     if ( m_iter >= s_stopIter )
+    {
         return;
+    }
     ++m_iter;
     
     // The ants are passing a circle
@@ -46,12 +44,14 @@ void AntColony::iteration()
     }
     
     // Forget pheromones
-    for ( auto& elm1 : systems::pointSys.getPoints() )
+    for ( auto& [hash1, point1] : systems::pointSys.getMapPoints() )
     {
-        for ( auto& elm2 : systems::pointSys.getPoints() )
+        for ( auto& [hash2, point2] : systems::pointSys.getMapPoints() )
         {
-            if (elm1 != elm2) 
-                systems::pointSys[ elm1 ][ elm2 ].P *= gColonyConst.cP;
+            if ( hash1 != hash2 )
+            {
+                systems::pointSys[ hash1 ][ hash2 ].P *= gColonyConst.cP;
+            }
         }
     }
     

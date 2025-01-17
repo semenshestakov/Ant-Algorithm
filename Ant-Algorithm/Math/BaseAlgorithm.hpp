@@ -3,7 +3,7 @@
 #define BaseAlgorithm_hpp
 
 #include <SFML/Graphics.hpp>
-#include "PointObject.hpp"
+#include "DrawPoint.hpp"
 #include "ClassUtils.hpp"
 
 
@@ -29,7 +29,7 @@ public:
     
 protected:
     inline static AlgorithmTypes type = AlgorithmTypes::BASE;
-    std::vector< obj::ptrPoint > m_bestRoute = {};
+    std::vector< std::size_t > m_bestRoute = {};
     double m_lengthRoute = 10e100;
     
 public:

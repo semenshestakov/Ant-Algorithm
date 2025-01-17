@@ -8,11 +8,10 @@
 #ifndef Utils_hpp
 #define Utils_hpp
 
-#include "HashablePoint.hpp"
+#include <vector>
 
 
 double maxP();
-
 
 template < typename T >
 bool elemInVector(const T& elem, const std::vector< T >& vec)

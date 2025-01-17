@@ -2,13 +2,14 @@
 
 #include "PointsSystem.hpp"
 #include "draw.hpp"
+#include <ranges>
 
 
 namespace systems
 {
+
 PointsSystem pointSys;
 using std::cout, std::endl;
-
 
 // = = = = = = = = = = = = = = = = = = = =
 //      Constructors and Distructor
@@ -30,17 +31,17 @@ void PointsSystem::clear()
     m_points.clear();
 }
 
-
 // = = = = = = = = = = = = = = = = = = = =
 //           Math && Base Logic
 // = = = = = = = = = = = = = = = = = = = =
-void PointsSystem::add( const obj::ptrPoint& newPoint )
+void PointsSystem::add( const draw::ptrPoint& newPoint )
 {
-    m_points.push_back( newPoint );
-    for ( const auto& point : m_points )
+    m_points[ newPoint->hash ] = newPoint;
+    
+    for ( const auto& [hash, point] : m_points )
     {
         double startProbability = 0.2;
-        if ( newPoint == point )
+        if ( newPoint->hash == point->hash )
         {
             startProbability = 0;
         }
@@ -50,8 +51,8 @@ void PointsSystem::add( const obj::ptrPoint& newPoint )
             .distance = newPoint->distance( *point ),
             .P = startProbability
         };
-        m_distances[ newPoint ][ point ] = temp;
-        m_distances[ point ][ newPoint ] = temp;
+        m_distances[ newPoint->hash ][ point->hash ] = temp;
+        m_distances[ point->hash ][ newPoint->hash ] = temp;
     }
 }
 
@@ -59,14 +60,32 @@ void PointsSystem::add( const obj::ptrPoint& newPoint )
 // = = = = = = = = = = = = = = = = = = = =
 //                 Geters
 // = = = = = = = = = = = = = = = = = = = =
-math::structMapPoint PointsSystem::operator[]( const obj::ptrPoint& point )
+draw::mapPointStruct& PointsSystem::operator[]( const std::size_t key )
 {
-    return m_distances[ point ];
+    return m_distances[ key ];
 }
 
-std::vector< obj::ptrPoint >& PointsSystem::getPoints()
+draw::ptrPoint PointsSystem::getPoint( const std::size_t hash )
+{
+    return m_points[ hash ];
+}
+
+draw::mapHashToPoint& PointsSystem::getMapPoints()
 {
     return m_points;
+}
+
+draw::vectorPoint PointsSystem::getVecPoints()
+{
+    draw::vectorPoint vecPoints;
+    vecPoints.reserve( m_points.size() );
+
+    for ( const auto& [ key, value ] : m_points )
+    {
+        vecPoints.push_back( value );
+    }
+
+    return vecPoints;
 }
 
 } // end namespace systems

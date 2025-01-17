@@ -3,14 +3,12 @@
 #ifndef PointSystem_hpp
 #define PointSystem_hpp
 
-
-#include "PointObject.hpp"
+#include "DrawPoint.hpp"
 #include "ClassUtils.hpp"
 
 
 namespace systems
 {
-
 
 class PointsSystem
 {
@@ -21,14 +19,16 @@ public:
     DELETE_COPY_AND_MOVE(PointsSystem)
     
 protected:
-    std::vector< obj::ptrPoint > m_points;
-    math::mapPoint m_distances;
+    draw::mapHashToPoint m_points = {};
+    draw::mapPoint m_distances = {};
     
 public: // Metods
-    void add( const obj::ptrPoint& );
+    void add( const draw::ptrPoint& );
     void clear();
-    std::vector< obj::ptrPoint >& getPoints();
-    math::structMapPoint operator[]( const obj::ptrPoint& );
+    draw::ptrPoint getPoint( const std::size_t );
+    draw::mapHashToPoint& getMapPoints();
+    draw::vectorPoint getVecPoints();
+    draw::mapPointStruct& operator[]( const std::size_t );
 };
 
 

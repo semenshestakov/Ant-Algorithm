@@ -8,11 +8,11 @@ namespace math::alg
 using std::cout, std::endl;
 
 
-BrutForce::BrutForce( std::vector< obj::ptrPoint >& points )
+BrutForce::BrutForce( draw::vectorPoint& points )
 {
     for ( auto& point : points )
     {
-        m_vectorPoints.push_back(point);
+        m_vectorPoints.push_back( point );
     }
 }
 
@@ -20,25 +20,31 @@ BrutForce::BrutForce( std::vector< obj::ptrPoint >& points )
 void BrutForce::iteration()
 {
     if ( m_isFinded || m_vectorPoints.size() > m_maxLenRoute )
-        return;
-    
-    for ( std::size_t i = 0; i < m_vectorPoints.size(); i++)
     {
-        std::vector< obj::ptrPoint > tempPoints = { m_vectorPoints[i] };
-        _recursion( tempPoints, 0.0 );
-        
+        return;
     }
+    
+    for ( std::size_t i = 0; i < m_vectorPoints.size(); i++ )
+    {
+        std::vector< draw::ptrPoint > tempPoints = { m_vectorPoints[ i ] };
+        _recursion( tempPoints, 0.0 );
+    }
+    
     m_isFinded = true;
 }
 
 
-void BrutForce::_recursion( std::vector< obj::ptrPoint >& points, double length )
+void BrutForce::_recursion( std::vector< draw::ptrPoint >& points, double length )
 {
     if ( points.size() > m_vectorPoints.size() )
+    {
         throw "points.size() > m_bestRoute.size()";
+    }
     
     if ( length > m_lengthRoute )
+    {
         return;
+    }
     
     if ( points.size() == m_vectorPoints.size() )
     {
@@ -47,17 +53,24 @@ void BrutForce::_recursion( std::vector< obj::ptrPoint >& points, double length 
         if ( length < m_lengthRoute )
         {
             m_lengthRoute = length;
-            m_bestRoute = points;
+            m_bestRoute.clear();
+            for ( auto& point : points )
+            {
+                m_bestRoute.push_back( point->hash );
+            }
         }
+        
         return;
     }
     
     for ( auto& pointMain : m_vectorPoints )
     {
         if ( elemInVector( pointMain, points ) )
+        {
             continue;
+        }
         
-        std::vector< obj::ptrPoint > pointsTemp = points;
+        std::vector< draw::ptrPoint > pointsTemp = points;
         double tempLength = pointsTemp[ pointsTemp.size() - 1 ]->distance( *pointMain ) + length;
         
         pointsTemp.push_back(pointMain);

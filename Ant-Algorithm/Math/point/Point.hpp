@@ -13,8 +13,8 @@
 
 namespace math 
 {
+
 typedef int cord;
-using std::unordered_map, std::unordered_set;
 
 
 class Point
@@ -24,13 +24,25 @@ public:
     Point( cord, cord );
     virtual ~Point();
     
-    cord x, y;
+    union {
+        struct {
+            const cord x; const cord y;
+        };
+        const std::size_t hash;
+    };
     
     // - - - - - - Math - - - - - -
-    double distance( const Point& );
+    [[nodiscard]] double distance( const Point& );
     
     // - - - - - Operators - - - - -
     friend std::ostream& operator<<( std::ostream&, const Point& );
+};
+
+
+struct PointToPoint
+{
+    double distance = 0;
+    double P = 0.2;
 };
 
 } // end space math

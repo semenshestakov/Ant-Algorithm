@@ -3,7 +3,7 @@
 #include "PointsSystem.hpp"
 
 
-Window::Window( uint _x, uint _y, std::string _name ) : window( sf::VideoMode( _x, _y ), _name )
+Window::Window( const uint _x, const uint _y, const std::string _name ) : window( sf::VideoMode( _x, _y ), _name )
 {
     algSystem = std::make_unique< systems::AlgorithmSystem >();
 }
@@ -19,7 +19,6 @@ void Window::eventHandler()
     sf::Event event;
     while ( window.pollEvent( event ) )
     {
-        
         // Close window
         if ( event.type == sf::Event::Closed )
             window.close();
@@ -30,9 +29,13 @@ void Window::eventHandler()
             {
                 gAlgorithmsIsWork = !gAlgorithmsIsWork;
                 if ( gAlgorithmsIsWork )
+                {
                     _start();
+                }
                 else
+                {
                     _clear();
+                }
             }
         }
         
@@ -41,7 +44,7 @@ void Window::eventHandler()
         {
             if ( event.mouseButton.button == sf::Mouse::Left && lock_click != true )
             {
-                obj::ptrPoint temp ( new obj::Point( X, Y ) );
+                draw::ptrPoint temp ( new draw::Point( X, Y ) );
                 systems::pointSys.add( temp );
             }
         }
@@ -75,7 +78,6 @@ void Window::update()
     {
         algSystem->iteration();
         algSystem->draw( window );
-        
     }
     
     drawPoints( window );
@@ -90,13 +92,13 @@ void Window::_clear()
     // Instance
     algSystem = nullptr;
     systems::pointSys.clear();
-    
 }
 
 
 void Window::_start()
-{    
+{
+    draw::vectorPoint points = systems::pointSys.getVecPoints();
     algSystem = std::make_unique< systems::AlgorithmSystem >();
-    algSystem->add( new math::alg::colony::AntColony( systems::pointSys.getPoints() ) );
-    algSystem->add( new math::alg::BrutForce( systems::pointSys.getPoints() ) );
+    algSystem->add( new math::alg::colony::AntColony( points ) );
+    algSystem->add( new math::alg::BrutForce( points ) );
 }
