@@ -40,6 +40,7 @@
 		A840F90D2C7A107A0079B2BF /* DrawPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawPoint.cpp; sourceTree = "<group>"; };
 		A840F90E2C7A107A0079B2BF /* DrawPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawPoint.hpp; sourceTree = "<group>"; };
 		A840F9142C7BD1FC0079B2BF /* DrawConstans.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawConstans.hpp; sourceTree = "<group>"; };
+		A86420F82D3C38C7000E7A3F /* LogUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogUtils.hpp; sourceTree = "<group>"; };
 		A883EB932C97653A004D259D /* ColonyUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColonyUtils.hpp; sourceTree = "<group>"; };
 		A883EB972C976DD6004D259D /* AlgorithmSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AlgorithmSystem.hpp; sourceTree = "<group>"; };
 		A883EB982C976DD6004D259D /* AlgorithmSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmSystem.cpp; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 				A8FD3CF32B114873001AAE24 /* README.md */,
 				A883EBA32C981EB6004D259D /* ClassUtils.hpp */,
 				A839C1392B113EF400394E50 /* main.cpp */,
+				A86420F82D3C38C7000E7A3F /* LogUtils.hpp */,
 			);
 			path = "Ant-Algorithm";
 			sourceTree = "<group>";

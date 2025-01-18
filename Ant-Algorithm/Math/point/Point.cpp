@@ -1,4 +1,5 @@
 #include "Point.hpp"
+#include "LogUtils.hpp"
 
 namespace math
 {
@@ -10,12 +11,12 @@ using std::cout, std::endl;
 // = = = = = = = = = = = = = = = = = = = =
 Point::Point( cord _x, cord _y ) : x( _x ), y( _y )
 {
-    cout << *this << endl;
+    LOG_INFO( "%s", toString().c_str() );
 }
 
 Point::~Point()
 {
-    cout << '~' << *this << endl;
+    LOG_INFO( "~%s", toString().c_str() );
 }
 
 
@@ -29,8 +30,13 @@ Point::~Point()
 // - - - - - - - - - Operators - - - - - - - - -
 std::ostream& operator<<( std::ostream& os, const Point& point )
 {
-    os << "Point(" << point.x << ", " << point.y << ")::hash-" << point.hash;
+    os << point.toString();
     return os;
+}
+
+std::string Point::toString() const 
+{
+    return "Point(" + std::to_string( x ) + ", " + std::to_string( y ) + ")::hash-" + std::to_string( hash );
 }
 
 } // end math space

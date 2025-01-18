@@ -36,6 +36,7 @@ public:
     
     // - - - - - Operators - - - - -
     friend std::ostream& operator<<( std::ostream&, const Point& );
+    std::string toString() const;
 };
 
 

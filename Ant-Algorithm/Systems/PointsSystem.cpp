@@ -3,6 +3,7 @@
 #include "PointsSystem.hpp"
 #include "draw.hpp"
 #include <ranges>
+#include "LogUtils.hpp"
 
 
 namespace systems
@@ -16,12 +17,12 @@ using std::cout, std::endl;
 // = = = = = = = = = = = = = = = = = = = =
 PointsSystem::PointsSystem()
 {
-    std::cout << "PointsSystem()" << std::endl;
+    LOG_INFO( "PointsSystem()" );
 }
 
 PointsSystem::~PointsSystem()
 {
-    std::cout << "~PointsSystem()" << std::endl;
+    LOG_INFO( "~PointsSystem()" );
     this->clear();
 }
 
