@@ -2,17 +2,40 @@ cmake_minimum_required(VERSION 3.12)
 
 project(YourProjectName)
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_COMPILER /usr/local/opt/llvm/bin/clang++)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+
 
 # Add your source files
 set(SOURCE_FILES
-    point.cpp 
-    WriteFile.cpp
-    BaseAnt.cpp 
-    ClassAnt.cpp 
-    AntColony.cpp  
-    draw.cpp 
+    ClassUtils.hpp
+    LogUtils.hpp
+    Math/Utils.cpp
+    Math/Utils.hpp
+    Math/point/Point.cpp
+    Math/point/Point.hpp
+    Math/AntMathColony/AntColony.hpp
+    Math/AntMathColony/AntColony.cpp
+    Math/AntMathColony/ClassAnt.cpp
+    Math/AntMathColony/ClassAnt.hpp
+    Math/AntMathColony/ColonyUtils.hpp
+    Math/BaseAlgorithm.hpp
+    Math/BrutForce/BrutForce.cpp
+    Math/BrutForce/BrutForce.hpp
+    Math/WriteSystem/WriteFile.cpp
+    Math/WriteSystem/WriteFile.hpp
+    Graphics/DrawConstans.hpp
+    Graphics/Drawer/draw.cpp
+    Graphics/Drawer/draw.hpp
+    Graphics/Drawer/objects/DrawPoint.cpp
+    Graphics/Drawer/objects/DrawPoint.hpp
+    Graphics/Window.hpp
+    Graphics/Window.cpp
+    Systems/AlgorithmSystem.cpp
+    Systems/AlgorithmSystem.hpp
+    Systems/PointsSystem.cpp
+    Systems/PointsSystem.hpp
     main.cpp
 )
 

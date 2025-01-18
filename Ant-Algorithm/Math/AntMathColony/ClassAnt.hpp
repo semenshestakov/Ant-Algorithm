@@ -2,7 +2,6 @@
 #ifndef ClassAnt_hpp
 #define ClassAnt_hpp
 
-#include <random>
 #include "DrawPoint.hpp"
 #include "ColonyUtils.hpp"
 #include "ClassUtils.hpp"
