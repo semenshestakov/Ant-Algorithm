@@ -57,7 +57,7 @@ std::size_t Ant::popVertex()
     std::vector< double > m_probability( count, 0 );
     
     // Generate random value
-    double _rand = static_cast< double >( rand() ) / RAND_MAX;
+    double _rand = static_cast< double >( std::rand() ) / RAND_MAX;
     
     for ( auto& point : *(m_noVisit) )
     {
