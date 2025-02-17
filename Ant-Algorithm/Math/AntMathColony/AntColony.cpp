@@ -42,24 +42,15 @@ void AntColony::iteration()
     {
         elm->next();
     }
+
     
-    // Forget pheromones
-    for ( auto& [hash1, point1] : systems::pointSys.getMapPoints() )
-    {
-        for ( auto& [hash2, point2] : systems::pointSys.getMapPoints() )
-        {
-            if ( hash1 != hash2 )
-            {
-                systems::pointSys[ hash1 ][ hash2 ].P *= gColonyConst.cP;
-            }
-        }
-    }
-    
+    bool findBetterRoute = false;
     // Update pheromones and best route
     for ( auto& elm : vecAnt )
     {
         if ( elm->getDistance() <= m_lengthRoute && elm->getDistance() != 0 )
         {
+            findBetterRoute = true;
             m_iter = 0;
             m_lengthRoute = elm->getDistance();
             m_bestRoute = elm->getHistory();
@@ -73,6 +64,20 @@ void AntColony::iteration()
                 result = std::min( result, gColonyConst.maxP );
                 systems::pointSys[ first ][ last ].P += result;
                 systems::pointSys[ last ][ first ].P += result;
+            }
+        }
+    }
+    if (!findBetterRoute)
+        return;
+    
+    // Forget pheromones
+    for ( auto& [hash1, point1] : systems::pointSys.getMapPoints() )
+    {
+        for ( auto& [hash2, point2] : systems::pointSys.getMapPoints() )
+        {
+            if ( hash1 != hash2 )
+            {
+                systems::pointSys[ hash1 ][ hash2 ].P *= gColonyConst.cP;
             }
         }
     }

@@ -20,8 +20,8 @@ namespace math::alg::colony
  */
 struct ColonyConstants
 {
-    double dist { 200.0 }, Q { 10.0 }, cP { 0.7 }, maxP{ 0.5 };
-    double alpha { 0.5 }, beta { 1.0 };
+    double dist { 200.0 }, Q { 20.0 }, cP { 0.5 }, maxP{ 0.5 };
+    double alpha { 0.8 }, beta { 1.0 };
 };
 
 constexpr ColonyConstants gColonyConst = {};
