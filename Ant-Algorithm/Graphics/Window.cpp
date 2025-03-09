@@ -3,7 +3,7 @@
 #include "PointsSystem.hpp"
 
 
-Window::Window( const uint _x, const uint _y, const std::string _name ) : window( sf::VideoMode( _x, _y ), _name )
+Window::Window( const uint _x, const uint _y, const std::string _name ) : window( sf::VideoMode( { _x, _y } ), _name )
 {
     algSystem = std::make_unique< systems::AlgorithmSystem >();
 }
@@ -16,16 +16,17 @@ void Window::eventHandler()
     math::cord X = mousePosition.x, Y = mousePosition.y;
         
     // Events
-    sf::Event event;
-    while ( window.pollEvent( event ) )
+    std::optional< sf::Event > event = window.pollEvent();
+    while ( event )
     {
         // Close window
-        if ( event.type == sf::Event::Closed )
+        if ( event->is< sf::Event::Closed >() )
             window.close();
         
-        if ( event.type == sf::Event::KeyPressed )
+        if ( event->is< sf::Event::KeyPressed >() )
         {
-            if ( event.key.code == sf::Keyboard::Enter )
+            const auto* keyPressedEvent = event->getIf< sf::Event::KeyPressed >();
+            if ( keyPressedEvent && keyPressedEvent->code == sf::Keyboard::Key::Enter )
             {
                 gAlgorithmsIsWork = !gAlgorithmsIsWork;
                 if ( gAlgorithmsIsWork )
@@ -40,9 +41,10 @@ void Window::eventHandler()
         }
         
         // Press button mouse left
-        if ( event.type == sf::Event::MouseButtonPressed )
+        if ( event->is< sf::Event::MouseButtonPressed >() )
         {
-            if ( event.mouseButton.button == sf::Mouse::Left && lock_click != true )
+            const auto* mouseButtonPressed = event->getIf< sf::Event::MouseButtonPressed >();
+            if ( mouseButtonPressed->button == sf::Mouse::Button::Left && lock_click != true )
             {
                 draw::ptrPoint temp ( new draw::Point( X, Y ) );
                 systems::pointSys.add( temp );
@@ -50,9 +52,10 @@ void Window::eventHandler()
         }
         
         // un-Press button mouse left
-        if ( event.type == sf::Event::MouseButtonReleased )
+        if ( event->is< sf::Event::MouseButtonReleased >() )
         {
-            if ( event.mouseButton.button == sf::Mouse::Left )
+            const auto* mouseButtonReleased = event->getIf< sf::Event::MouseButtonPressed >();
+            if ( mouseButtonReleased->button == sf::Mouse::Button::Left )
             {
                 lock_click = false;
             }

@@ -40,7 +40,7 @@ sf::CircleShape Point::drawPoint()
     
     circle.setRadius( s_radius );
     circle.setFillColor( colorPoint );
-    circle.setPosition( x - s_radius, y - s_radius );
+    circle.setPosition( sf::Vector2f(x - s_radius, y - s_radius ) );
     
     return circle;
 }
