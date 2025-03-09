@@ -6,7 +6,7 @@
 
 
 #include "DrawConstans.hpp"
-#include "Point.hpp"
+#include "Math/point/Point.hpp"
 
 
 namespace draw

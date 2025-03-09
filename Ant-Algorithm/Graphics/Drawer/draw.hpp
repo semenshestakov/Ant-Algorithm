@@ -2,8 +2,8 @@
 #ifndef draw_hpp
 #define draw_hpp
 
-#include "AntColony.hpp"
-#include "BrutForce.hpp"
+#include "Math/AntMathColony/AntColony.hpp"
+#include "Math/BrutForce/BrutForce.hpp"
 #include "DrawConstans.hpp"
 
 

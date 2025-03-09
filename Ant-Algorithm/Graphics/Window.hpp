@@ -4,8 +4,8 @@
 
 
 #include "Drawer/draw.hpp"
-#include "AntColony.hpp"
-#include "BrutForce.hpp"
+#include "Math/AntMathColony/AntColony.hpp"
+#include "Math/BrutForce/BrutForce.hpp"
 #include "AlgorithmSystem.hpp"
 #include "ClassUtils.hpp"
 
