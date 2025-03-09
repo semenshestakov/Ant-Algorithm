@@ -1,5 +1,7 @@
+#include <sstream>
 #include "Point.hpp"
 #include "LogUtils.hpp"
+
 
 namespace math
 {
@@ -36,6 +38,7 @@ std::ostream& operator<<( std::ostream& os, const Point& point )
 
 std::string Point::toString() const 
 {
+
     return "Point(" + std::to_string( x ) + ", " + std::to_string( y ) + ")::hash-" + std::to_string( hash );
 }
 

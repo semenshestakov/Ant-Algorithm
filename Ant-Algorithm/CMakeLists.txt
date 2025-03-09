@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(YourProjectName)
-add_executable(my_app main.cpp)
 
-# Укажите C++ стандарт
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Добавьте опции компиляции (например, оптимизацию)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_PREFIX_PATH "{}")
 
 # Укажите пути к include папкам
 include_directories(
@@ -21,10 +18,9 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics/Drawer
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics/Drawer/objects
     ${CMAKE_CURRENT_SOURCE_DIR}/Systems
-    /opt/homebrew/Cellar/sfml/3.0.0/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/SFML/include
 )
 
-# Создайте список исходных файлов
 file(GLOB_RECURSE SOURCE_FILES
     "*.cpp"
     "*.cxx"
@@ -37,18 +33,18 @@ file(GLOB_RECURSE HEADER_FILES
     "*.h"
 )
 
-# Добавьте исполняемый файл
+set(SFML_STATIC_LIBRARIES TRUE)
+set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SFML/lib/cmake/SFML")
+set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/SFML")
+
 add_executable(main ${SOURCE_FILES} ${HEADER_FILES})
 
-# Укажите библиотеки для линковки
-find_package(SFML 3.0 COMPONENTS Graphics Window System REQUIRED)
+find_package(SFML 3.0 REQUIRED COMPONENTS Graphics Window System Network)
 if (SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(my_app PUBLIC sfml-graphics sfml-window sfml-system)
+    target_link_libraries(main PUBLIC SFML::Graphics SFML::Window SFML::System SFML::Network)
 else()
     message(FATAL_ERROR "SFML not found. Please install SFML.")
 endif()
 
-# Укажите правила установки (если нужно)
-install(TARGETS main DESTINATION bin)
+
 install(FILES ${HEADER_FILES} DESTINATION include/YourProjectName)
