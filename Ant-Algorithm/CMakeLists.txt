@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(YourProjectName)
+project(AntAlgorithm)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -34,4 +34,4 @@ else()
 endif()
 
 install(TARGETS main DESTINATION bin)
-install(FILES ${HEADER_FILES} DESTINATION include/YourProjectName)
+install(FILES ${HEADER_FILES} DESTINATION include/AntAlgorithm)
